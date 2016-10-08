@@ -86,10 +86,10 @@ public class Burrower extends AbilityListener implements Disableable {
                     }
                 }
                 p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 9);
-                p.getWorld().playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 0);
+                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 0);
                 p.teleport(loc);
                 p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 9);
-                p.getWorld().playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 0);
+                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 0);
                 List<Player> players = new ArrayList<Player>();
                 if (expires.containsKey(hg.currentTime))
                     players = expires.get(hg.currentTime);

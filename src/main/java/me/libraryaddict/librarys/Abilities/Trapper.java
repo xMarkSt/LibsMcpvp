@@ -26,7 +26,7 @@ public class Trapper extends AbilityListener {
                 return;
             b.setType(Material.WEB);
             b.removeMetadata("Trapper", HungergamesApi.getHungergames());
-            b.getWorld().playSound(b.getLocation().clone(), Sound.CLICK, 1, 10);
+            b.getWorld().playSound(b.getLocation().clone(), Sound.UI_BUTTON_CLICK, 1, 10);
         }
     }
 

@@ -104,7 +104,7 @@ public class Wisp extends AbilityListener implements Disableable {
                 p.setItemInHand(new ItemStack(0));
             final WillOfWisp wisp = new WillOfWisp();
             wisp.caster = p;
-            p.getWorld().playSound(p.getLocation(), Sound.BAT_TAKEOFF, 1, 0);
+            p.getWorld().playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 0);
             for (int i = 0; i < wispsToSpawn; i++) {
                 Ocelot villager = spawnVillager(p.getLocation());
                 wisp.villagers.add(villager);
@@ -147,7 +147,7 @@ public class Wisp extends AbilityListener implements Disableable {
 
     private void popWisp(Ocelot villager) {
         Location loc = villager.getLocation().clone();
-        loc.getWorld().playSound(loc, Sound.FIZZ, 2, 0);
+        loc.getWorld().playSound(loc, Sound.BLOCK_REDSTONE_TORCH_BURNOUT, 2, 0);
         for (int i = 0; i <= 9; i++)
             loc.getWorld().playEffect(loc, Effect.SMOKE, i);
         villager.remove();

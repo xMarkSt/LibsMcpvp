@@ -90,8 +90,8 @@ public class Flash extends AbilityListener implements Disableable {
                             loc.setYaw(pLoc.getYaw());
                             p.eject();
                             p.teleport(loc);
-                            pLoc.getWorld().playSound(pLoc, Sound.ENDERMAN_TELEPORT, 1, 1.2F);
-                            pLoc.getWorld().playSound(loc, Sound.ENDERMAN_TELEPORT, 1, 1.2F);
+                            pLoc.getWorld().playSound(pLoc, Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
+                            pLoc.getWorld().playSound(loc, Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
                             NMS.showPortalEffect(pLoc);
                             NMS.showPortalEffect(loc);
                             if (giveWeakness)

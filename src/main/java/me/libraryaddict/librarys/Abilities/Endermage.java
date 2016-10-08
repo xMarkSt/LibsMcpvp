@@ -68,8 +68,8 @@ public class Endermage extends AbilityListener implements Disableable {
     private void warp(Player victim, Location portal) {
         victim.playEffect(victim.getLocation(), Effect.ENDER_SIGNAL, 9);
         victim.playEffect(portal, Effect.ENDER_SIGNAL, 9);
-        victim.playSound(victim.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1.2F);
-        victim.playSound(portal, Sound.ENDERMAN_TELEPORT, 1, 1.2F);
+        victim.playSound(victim.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
+        victim.playSound(portal, Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
         if (invincibleTicks > 0)
             victim.setNoDamageTicks(invincibleTicks);
         victim.teleport(portal);

@@ -66,7 +66,7 @@ public class Phantom extends AbilityListener implements Disableable {
             }
             cooldown.put(event.getItem(), hg.currentTime + cooldownTime);
             flightLeft.put(p, secondsOfFlight + 1);
-            p.getWorld().playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 2, 1);
+            p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 2, 1);
             p.setAllowFlight(true);
             p.setFlying(true);
             if (giveFlightArmor) {
@@ -109,7 +109,7 @@ public class Phantom extends AbilityListener implements Disableable {
                 p.setFallDistance(0);
                 if (giveFlightArmor)
                     p.getInventory().setArmorContents(playerArmor.remove(p));
-                p.getWorld().playSound(p.getLocation(), Sound.AMBIENCE_RAIN, 3, 4);
+                p.getWorld().playSound(p.getLocation(), Sound.WEATHER_RAIN, 3, 4);
                 p.sendMessage(flightWoreOff);
                 if (this.addNoCheatPlusBypass)
                     p.addAttachment(HungergamesApi.getHungergames(), "nocheatplus.checks.moving.nofall", true, 100);

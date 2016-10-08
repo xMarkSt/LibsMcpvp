@@ -34,7 +34,7 @@ public class Spectre extends AbilityListener implements Disableable {
     private transient HashMap<Player, Integer> invis = new HashMap<Player, Integer>();
     public int invisLength = 20;
     public boolean playSound = true;
-    public String soundName = Sound.SPLASH.name();
+    //public String soundName = Sound.ENTITY_GENERIC_SPLASH.name();
     public String spectreItemName = ChatColor.WHITE + "Spectre Dust";
     public int spectreOffItemId = Material.SUGAR.getId();
     public int spectreOnItemId = Material.REDSTONE.getId();
@@ -141,14 +141,14 @@ public class Spectre extends AbilityListener implements Disableable {
                 }
             }
         }
-        Sound sound = Sound.valueOf(soundName.toUpperCase());
+        //Sound sound = Sound.valueOf(soundName.toUpperCase());
         Iterator<Player> itel = invis.keySet().iterator();
         while (itel.hasNext()) {
             Player p = itel.next();
             if (playSound)
                 for (Entity e : p.getNearbyEntities(20, 20, 20))
                     if (e instanceof Player)
-                        ((Player) e).playSound(p.getLocation().clone(), sound, 1, 0);
+                        ((Player) e).playSound(p.getLocation().clone(), Sound.ENTITY_GENERIC_SPLASH, 1, 0);
             if (invis.get(p) <= hg.currentTime) {
                 itel.remove();
                 for (Player player : Bukkit.getOnlinePlayers()) {
