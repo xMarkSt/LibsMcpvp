@@ -1,15 +1,10 @@
 package me.libraryaddict.librarys.Abilities;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,29 +27,28 @@ public class Flash extends AbilityListener implements Disableable {
     public int flashOffItemId = Material.TORCH.getId();
     public int flashOnItemId = Material.REDSTONE_TORCH_ON.getId();
     public boolean giveWeakness = true;
-    private HashSet<Byte> ignoreBlockTypes = new HashSet<Byte>();
+    //private HashSet<Byte> ignoreBlockTypes = new HashSet<Byte>();
+    private Set<Material> ignoreBlockTypes = new HashSet<Material>();
     public int maxTeleportDistance = 200;
     public int normalCooldown = 30;
 
     public Flash() {
-        ignoreBlockTypes.add((byte) 0);
-        for (byte b = 8; b < 12; b++)
-            ignoreBlockTypes.add(b);
-        ignoreBlockTypes.add((byte) Material.SNOW.getId());
-        ignoreBlockTypes.add((byte) Material.LONG_GRASS.getId());
-        ignoreBlockTypes.add((byte) Material.RED_MUSHROOM.getId());
-        ignoreBlockTypes.add((byte) Material.RED_ROSE.getId());
-        ignoreBlockTypes.add((byte) Material.YELLOW_FLOWER.getId());
-        ignoreBlockTypes.add((byte) Material.BROWN_MUSHROOM.getId());
-        ignoreBlockTypes.add((byte) Material.SIGN_POST.getId());
-        ignoreBlockTypes.add((byte) Material.WALL_SIGN.getId());
-        ignoreBlockTypes.add((byte) Material.FIRE.getId());
-        ignoreBlockTypes.add((byte) Material.TORCH.getId());
-        ignoreBlockTypes.add((byte) Material.REDSTONE_WIRE.getId());
-        ignoreBlockTypes.add((byte) Material.REDSTONE_TORCH_OFF.getId());
-        ignoreBlockTypes.add((byte) Material.REDSTONE_TORCH_ON.getId());
-        ignoreBlockTypes.add((byte) Material.VINE.getId());
-        ignoreBlockTypes.add((byte) Material.WATER_LILY.getId());
+        ignoreBlockTypes.add(Material.AIR);
+        ignoreBlockTypes.add(Material.SNOW);
+        ignoreBlockTypes.add(Material.LONG_GRASS);
+        ignoreBlockTypes.add(Material.RED_MUSHROOM);
+        ignoreBlockTypes.add(Material.RED_ROSE);
+        ignoreBlockTypes.add(Material.YELLOW_FLOWER);
+        ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
+        ignoreBlockTypes.add(Material.SIGN_POST);
+        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.FIRE);
+        ignoreBlockTypes.add(Material.TORCH);
+        ignoreBlockTypes.add(Material.REDSTONE_WIRE);
+        ignoreBlockTypes.add(Material.REDSTONE_TORCH_OFF);
+        ignoreBlockTypes.add(Material.REDSTONE_TORCH_ON);
+        ignoreBlockTypes.add(Material.VINE);
+        ignoreBlockTypes.add(Material.WATER_LILY);
     }
 
     public int getCooldown(Player p) {
@@ -75,11 +69,11 @@ public class Flash extends AbilityListener implements Disableable {
                         item.setTypeId(flashOffItemId);
                     }
                 } else {
-                    List<Block> b = p.getLastTwoTargetBlocks(ignoreBlockTypes, maxTeleportDistance);
-                    if (b.size() > 1 && b.get(1).getType() != Material.AIR) {
-                        double dist = p.getLocation().distance(b.get(0).getLocation());
+                    Block b = p.getTargetBlock(ignoreBlockTypes, maxTeleportDistance);
+                    if (b.getType() != Material.AIR) {
+                        double dist = p.getLocation().distance(b.getLocation());
                         if (dist > 2) {
-                            Location loc = b.get(0).getLocation().clone().add(0.5, 0.5, 0.5);
+                            Location loc = b.getLocation().clone().add(0.5, 0.5, 0.5);
                             item.setTypeId(flashOffItemId);
                             int hisCooldown = normalCooldown;
                             if (addMoreCooldownForLargeDistances && (dist / 2) > 30)
