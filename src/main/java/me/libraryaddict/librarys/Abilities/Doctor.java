@@ -14,7 +14,8 @@ import org.bukkit.potion.PotionEffect;
 
 public class Doctor extends AbilityListener implements Disableable {
     public boolean heal = false;
-    public int pairOfForcepsItemId = Material.SHEARS.getId();
+    public String pairOfForcepsItem = Material.SHEARS.name();
+    private Material pairOfForcepsItemMat = Material.matchMaterial(pairOfForcepsItem);
     public String pairOfForcepsItemName = ChatColor.WHITE + "Pair of Forceps";
     public double toHeal = 5;
 
@@ -22,7 +23,7 @@ public class Doctor extends AbilityListener implements Disableable {
     public void onRightClick(PlayerInteractEntityEvent event) {
         ItemStack item = event.getPlayer().getItemInHand();
         if (event.getRightClicked() instanceof LivingEntity && isSpecialItem(item, pairOfForcepsItemName)
-                && pairOfForcepsItemId == item.getTypeId() && hasAbility(event.getPlayer())) {
+                && pairOfForcepsItemMat == item.getType() && hasAbility(event.getPlayer())) {
             LivingEntity lEntity = (LivingEntity) event.getRightClicked();
             Collection<PotionEffect> effects = lEntity.getActivePotionEffects();
             for (PotionEffect effect : effects)

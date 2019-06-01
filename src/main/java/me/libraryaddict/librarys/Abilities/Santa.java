@@ -36,7 +36,8 @@ public class Santa extends AbilityListener implements Disableable {
             + ChatColor.WHITE + "m" + ChatColor.DARK_RED + "a" + ChatColor.WHITE + "s" + ChatColor.DARK_RED + "!";
     public String[] naughtyList = new String[] { "Urgal", "Chemist", "Digger", "Grandpa", "Jumper" };
     public int presentEndingDataValue = 15;
-    public int presentID = Material.WOOL.getId();
+    public String present = Material.WHITE_WOOL.name();
+    private Material presentMat = Material.matchMaterial(present);
     public String[] presentLore = new String[] {
             ChatColor.DARK_PURPLE + "I wish you " + ChatColor.GREEN + "joy " + ChatColor.WHITE + "all though your holidays.",
             ChatColor.DARK_PURPLE + "I wish you " + ChatColor.GREEN + "good luck " + ChatColor.WHITE + "that "
@@ -54,7 +55,7 @@ public class Santa extends AbilityListener implements Disableable {
     @EventHandler
     public void blockPlaceEvent(BlockPlaceEvent event) {
         ItemStack item = event.getItemInHand();
-        if (preventPlacing && item != null && item.getTypeId() == presentID && item.hasItemMeta()
+        if (preventPlacing && item != null && item.getType() == presentMat && item.hasItemMeta()
                 && item.getItemMeta().hasDisplayName()) {
             for (Kit kit : kits.getKits())
                 if (String.format(presentName, kit.getName()).equals(item.getItemMeta().getDisplayName())) {
@@ -103,7 +104,7 @@ public class Santa extends AbilityListener implements Disableable {
             event.setCancelled(true);
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() == 0)
-                p.setItemInHand(new ItemStack(0));
+                p.setItemInHand(new ItemStack(Material.AIR));
             if (displayMessageOnOpen)
                 p.sendMessage(messageOnPresentOpen);
             for (ItemStack i : kit.getItems()) {
@@ -123,7 +124,7 @@ public class Santa extends AbilityListener implements Disableable {
                 Kit kit = findViableKit();
                 if (kit != null) {
                     ItemStack item = new ItemStack(
-                            this.presentID,
+                            this.presentMat,
                             1,
                             (short) (new Random().nextInt((presentEndingDataValue - presentStartingDataValue) + 1) + presentStartingDataValue));
                     ItemMeta meta = item.getItemMeta();

@@ -30,29 +30,29 @@ public class Burrower extends AbilityListener implements Disableable {
     public int addZ = 50;
     private transient HashMap<Integer, List<Player>> expires = new HashMap<Integer, List<Player>>();
     public int giveBackItemDelay = 300;
-    public int groundBlockData = 0;
-    public int groundBlockId = 20;
+    public String groundBlock = Material.GLASS.name();
+    private Material groundBlockMat = Material.matchMaterial(groundBlock);
     private transient Hungergames hg = HungergamesApi.getHungergames();
-    public int itemData = 0;
-    public int itemId = Material.SLIME_BALL.getId();
+    public String item = Material.SLIME_BALL.name();
+    private Material itemMat = Material.matchMaterial(item);
     private transient KitManager kits = HungergamesApi.getKitManager();
     public String messageNotHighEnough = ChatColor.RED + "You are too close to the void!";
     public int mustBeHigherThen = 10;
     public boolean randomCords = true;
-    public int roofBlockData = 0;
-    public int roofBlockId = 20;
+    public String roofBlock = Material.GLASS.name();
+    private Material roofBlockMat = Material.matchMaterial(roofBlock);
     public int roomHeight = 2;
     public int roomWidth = 1;
     public boolean teleportHeightRelativeToCurrentPos = false;
     public int teleportToY = 10;
-    public int wallsBlockData = 0;
-    public int wallsBlockId = 20;
+    public String wallsBlock = Material.GLASS.name();
+    private Material wallsBlockMat = Material.matchMaterial(wallsBlock);
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
         if (event.getAction().name().contains("RIGHT") && hasAbility(event.getPlayer()) && item != null
-                && item.getTypeId() == itemId && item.getDurability() == itemData) {
+                && item.getType() == itemMat) {
             Player p = event.getPlayer();
             if (p.getLocation().getY() > mustBeHigherThen) {
                 int x = addX;
@@ -63,7 +63,7 @@ public class Burrower extends AbilityListener implements Disableable {
                 }
                 item.setAmount(item.getAmount() - 1);
                 if (item.getAmount() == 0)
-                    p.setItemInHand(new ItemStack(0));
+                    p.setItemInHand(new ItemStack(Material.AIR));
                 Location loc = p.getLocation().clone().add(x, 0, z);
                 if (teleportHeightRelativeToCurrentPos)
                     loc.setY(loc.getY() - teleportToY);
@@ -75,21 +75,21 @@ public class Burrower extends AbilityListener implements Disableable {
                         for (int bY = -1; bY <= roomHeight; bY++) {
                             Block b = loc.clone().add(bX, bY, bZ).getBlock();
                             if (bY == roomHeight) {
-                                b.setTypeIdAndData(roofBlockId, (byte) roofBlockData, false);
+                                b.setType(roofBlockMat, false);
                             } else if (bY == -1) {
-                                b.setTypeIdAndData(groundBlockId, (byte) groundBlockData, false);
+                                b.setType(groundBlockMat, false);
                             } else if (bX == -roomWidth || bZ == -roomWidth || bX == roomWidth || bZ == roomWidth) {
-                                b.setTypeIdAndData(wallsBlockId, (byte) wallsBlockData, false);
+                                b.setType(wallsBlockMat, false);
                             } else
                                 b.setType(Material.AIR);
                         }
                     }
                 }
                 p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 9);
-                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 0);
+                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 0);
                 p.teleport(loc);
                 p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 9);
-                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 0);
+                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 0);
                 List<Player> players = new ArrayList<Player>();
                 if (expires.containsKey(hg.currentTime))
                     players = expires.get(hg.currentTime);
@@ -118,7 +118,7 @@ public class Burrower extends AbilityListener implements Disableable {
     public void onSecond(TimeSecondEvent event) {
         if (expires.containsKey(hg.currentTime)) {
             for (Player p : expires.remove(hg.currentTime))
-                kits.addItem(p, new ItemStack(itemId, 1, (short) itemData));
+                kits.addItem(p, new ItemStack(itemMat, 1));
         }
     }
 }

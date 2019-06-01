@@ -14,7 +14,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class Digger extends AbilityListener implements Disableable {
     public int delayInTicks = 30;
-    public int diggerBlock = Material.DRAGON_EGG.getId();
+    public String diggerBlock = Material.DRAGON_EGG.name();
+    private Material diggerBlockMat = Material.matchMaterial(diggerBlock);
     public int goDownY = 5;
     public int goSideways = 5;
     public String messageAfterPlaced = ChatColor.RED + "You placed the egg. Run!";
@@ -23,7 +24,7 @@ public class Digger extends AbilityListener implements Disableable {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         ItemStack item = event.getItemInHand();
-        if (item != null && item.getTypeId() == diggerBlock && isSpecialItem(item, nameOfItem) && hasAbility(event.getPlayer())) {
+        if (item != null && item.getType() == diggerBlockMat && isSpecialItem(item, nameOfItem) && hasAbility(event.getPlayer())) {
             final Block b = event.getBlock();
             b.setType(Material.AIR);
             event.getPlayer().sendMessage(messageAfterPlaced);

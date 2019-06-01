@@ -2,10 +2,14 @@ package me.libraryaddict.librarys.Abilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.MultipleFacing;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -15,7 +19,8 @@ import me.libraryaddict.Hungergames.Types.AbilityListener;
 public class Tarzan extends AbilityListener implements Disableable {
 
     private HashMap<BlockFace, Byte> faces = new HashMap<BlockFace, Byte>();
-    private ArrayList<Integer> ignoreBlockTypes = new ArrayList<Integer>();
+    //private ArrayList<BlockFace> faces = new ArrayList<>();
+    private ArrayList<Material> ignoreBlockTypes = new ArrayList<>();
     public int scanDownRadius = 5;
     public int scanSidewaysRadius = 5;
     public int scanUpRadius = 5;
@@ -25,24 +30,24 @@ public class Tarzan extends AbilityListener implements Disableable {
         faces.put(BlockFace.WEST, (byte) 2);
         faces.put(BlockFace.NORTH, (byte) 4);
         faces.put(BlockFace.EAST, (byte) 8);
-        ignoreBlockTypes.add(0);
-        for (int b = 8; b < 12; b++)
-            ignoreBlockTypes.add(b);
-        ignoreBlockTypes.add(Material.SNOW.getId());
-        ignoreBlockTypes.add(Material.LONG_GRASS.getId());
-        ignoreBlockTypes.add(Material.RED_MUSHROOM.getId());
-        ignoreBlockTypes.add(Material.RED_ROSE.getId());
-        ignoreBlockTypes.add(Material.YELLOW_FLOWER.getId());
-        ignoreBlockTypes.add(Material.BROWN_MUSHROOM.getId());
-        ignoreBlockTypes.add(Material.SIGN_POST.getId());
-        ignoreBlockTypes.add(Material.WALL_SIGN.getId());
-        ignoreBlockTypes.add(Material.FIRE.getId());
-        ignoreBlockTypes.add(Material.TORCH.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_WIRE.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_OFF.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_ON.getId());
-        ignoreBlockTypes.add(Material.VINE.getId());
-        ignoreBlockTypes.add(Material.WATER_LILY.getId());
+        ignoreBlockTypes.add(Material.AIR);
+        ignoreBlockTypes.add(Material.WATER);
+        ignoreBlockTypes.add(Material.LAVA);
+        ignoreBlockTypes.add(Material.SNOW);
+        ignoreBlockTypes.add(Material.LEGACY_LONG_GRASS);
+        ignoreBlockTypes.add(Material.RED_MUSHROOM);
+        ignoreBlockTypes.add(Material.LEGACY_RED_ROSE);
+        ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
+        ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
+        ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
+        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.FIRE);
+        ignoreBlockTypes.add(Material.TORCH);
+        ignoreBlockTypes.add(Material.REDSTONE_WIRE);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_OFF);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_ON);
+        ignoreBlockTypes.add(Material.VINE);
+        ignoreBlockTypes.add(Material.LEGACY_WATER_LILY);
     }
 
     @EventHandler
@@ -57,17 +62,19 @@ public class Tarzan extends AbilityListener implements Disableable {
                             continue;
                         Block b = loc.getWorld().getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z);
                         if (b.getType() == Material.AIR) {
-                            byte data = 0;
+                            ArrayList<BlockFace> faces = new ArrayList<>();
+                            MultipleFacing blockData = (MultipleFacing) Bukkit.createBlockData(Material.VINE);
                             if (b.getRelative(BlockFace.UP).getType() == Material.VINE)
-                                data = b.getRelative(BlockFace.UP).getData();
+                                blockData = (MultipleFacing) b.getRelative(BlockFace.UP).getBlockData();
                             else
-                                for (BlockFace face : faces.keySet()) {
+                                for (BlockFace face : BlockFace.values()) {
                                     Block block = b.getRelative(face);
-                                    if (!ignoreBlockTypes.contains(block.getTypeId()))
-                                        data += faces.get(face);
+                                    if (!ignoreBlockTypes.contains(block.getType()))
+                                        blockData.setFace(face, true);
                                 }
-                            if (data != (byte) 0)
-                                b.setTypeIdAndData(Material.VINE.getId(), data, false);
+                            if (blockData.getFaces().size() > 0) {
+                                b.setBlockData(blockData, false);
+                            }
                         }
                     }
                 }

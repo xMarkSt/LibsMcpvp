@@ -31,7 +31,7 @@ public class Salvager extends AbilityListener implements Disableable {
                     if (recipe instanceof ShapelessRecipe) {
                         item.setAmount(item.getAmount() - recipe.getResult().getAmount());
                         if (item.getAmount() <= 0)
-                            p.setItemInHand(new ItemStack(0));
+                            p.setItemInHand(new ItemStack(Material.AIR));
                         event.setCancelled(true);
                         for (ItemStack items : ((ShapelessRecipe) recipe).getIngredientList())
                             if (items != null && items.getType() != Material.AIR)
@@ -42,7 +42,7 @@ public class Salvager extends AbilityListener implements Disableable {
                     if (recipe instanceof ShapedRecipe) {
                         item.setAmount(item.getAmount() - recipe.getResult().getAmount());
                         if (item.getAmount() <= 0)
-                            p.setItemInHand(new ItemStack(0));
+                            p.setItemInHand(new ItemStack(Material.AIR));
                         event.setCancelled(true);
                         for (ItemStack items : ((ShapedRecipe) recipe).getIngredientMap().values())
                             if (items != null && items.getType() != Material.AIR)

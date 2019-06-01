@@ -44,7 +44,7 @@ public class Forger extends AbilityListener implements Disableable {
                                         new ItemStack(Material.GOLD_INGOT));
                         }
                         if (item.getAmount() == 0)
-                            inv.setItem(slot, new ItemStack(0));
+                            inv.setItem(slot, new ItemStack(Material.AIR));
                     }
                 }
             } else if (currentItem.getType().name().contains("ORE")) {
@@ -61,7 +61,7 @@ public class Forger extends AbilityListener implements Disableable {
                                 .addItem((Player) event.getWhoClicked(), new ItemStack(Material.GOLD_INGOT));
                 }
                 if (currentItem.getAmount() == 0)
-                    event.setCurrentItem(new ItemStack(0));
+                    event.setCurrentItem(new ItemStack(Material.AIR));
             }
             if (coalAmount != hadCoal)
                 for (int slot = 0; slot < inv.getSize(); slot++) {
@@ -73,7 +73,7 @@ public class Forger extends AbilityListener implements Disableable {
                             coalAmount++;
                         }
                         if (item.getAmount() == 0)
-                            inv.setItem(slot, new ItemStack(0));
+                            inv.setItem(slot, new ItemStack(Material.AIR));
                     }
                 }
         }

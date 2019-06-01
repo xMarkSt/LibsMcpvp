@@ -1,6 +1,7 @@
 package me.libraryaddict.librarys.Abilities;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
 
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 
@@ -24,31 +25,34 @@ public class Flash extends AbilityListener implements Disableable {
     public boolean addMoreCooldownForLargeDistances = true;
     public String cooldownMessage = ChatColor.BLUE + "You can use this again in %s seconds!";
     public String flashItemName = ChatColor.WHITE + "Flash";
-    public int flashOffItemId = Material.TORCH.getId();
-    public int flashOnItemId = Material.REDSTONE_TORCH_ON.getId();
+    public String flashOffItem = Material.TORCH.name();
+    private Material flashOffItemMat = Material.matchMaterial(flashOffItem);
+    public String flashOnItem = Material.LEGACY_REDSTONE_TORCH_ON.name();
+    private Material flashOnItemMat = Material.matchMaterial(flashOnItem);
     public boolean giveWeakness = true;
-    //private HashSet<Byte> ignoreBlockTypes = new HashSet<Byte>();
-    private Set<Material> ignoreBlockTypes = new HashSet<Material>();
+    private HashSet<Material> ignoreBlockTypes = new HashSet<>();
     public int maxTeleportDistance = 200;
     public int normalCooldown = 30;
 
     public Flash() {
         ignoreBlockTypes.add(Material.AIR);
+        ignoreBlockTypes.add(Material.WATER);
+        ignoreBlockTypes.add(Material.LAVA);
         ignoreBlockTypes.add(Material.SNOW);
-        ignoreBlockTypes.add(Material.LONG_GRASS);
+        ignoreBlockTypes.add(Material.LEGACY_LONG_GRASS);
         ignoreBlockTypes.add(Material.RED_MUSHROOM);
-        ignoreBlockTypes.add(Material.RED_ROSE);
-        ignoreBlockTypes.add(Material.YELLOW_FLOWER);
+        ignoreBlockTypes.add(Material.LEGACY_RED_ROSE);
+        ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
         ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
-        ignoreBlockTypes.add(Material.SIGN_POST);
+        ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
         ignoreBlockTypes.add(Material.WALL_SIGN);
         ignoreBlockTypes.add(Material.FIRE);
         ignoreBlockTypes.add(Material.TORCH);
         ignoreBlockTypes.add(Material.REDSTONE_WIRE);
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_OFF);
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_ON);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_OFF);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_ON);
         ignoreBlockTypes.add(Material.VINE);
-        ignoreBlockTypes.add(Material.WATER_LILY);
+        ignoreBlockTypes.add(Material.LEGACY_WATER_LILY);
     }
 
     public int getCooldown(Player p) {
@@ -65,16 +69,16 @@ public class Flash extends AbilityListener implements Disableable {
                 p.updateInventory();
                 if (getCooldown(p) > HungergamesApi.getHungergames().currentTime) {
                     p.sendMessage(String.format(cooldownMessage, getCooldown(p) - HungergamesApi.getHungergames().currentTime));
-                    if (item.getTypeId() != flashOffItemId) {
-                        item.setTypeId(flashOffItemId);
+                    if (item.getType() != flashOffItemMat) {
+                        item.setType(flashOffItemMat);
                     }
                 } else {
-                    Block b = p.getTargetBlock(ignoreBlockTypes, maxTeleportDistance);
-                    if (b.getType() != Material.AIR) {
-                        double dist = p.getLocation().distance(b.getLocation());
+                    List<Block> b = p.getLastTwoTargetBlocks(ignoreBlockTypes, maxTeleportDistance);
+                    if (b.size() > 1 && b.get(1).getType() != Material.AIR) {
+                        double dist = p.getLocation().distance(b.get(0).getLocation());
                         if (dist > 2) {
-                            Location loc = b.getLocation().clone().add(0.5, 0.5, 0.5);
-                            item.setTypeId(flashOffItemId);
+                            Location loc = b.get(0).getLocation().clone().add(0.5, 0.5, 0.5);
+                            item.setType(flashOffItemMat);
                             int hisCooldown = normalCooldown;
                             if (addMoreCooldownForLargeDistances && (dist / 2) > 30)
                                 hisCooldown += (int) (dist / 2);
@@ -84,8 +88,8 @@ public class Flash extends AbilityListener implements Disableable {
                             loc.setYaw(pLoc.getYaw());
                             p.eject();
                             p.teleport(loc);
-                            pLoc.getWorld().playSound(pLoc, Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
-                            pLoc.getWorld().playSound(loc, Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1.2F);
+                            pLoc.getWorld().playSound(pLoc, Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1.2F);
+                            pLoc.getWorld().playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1.2F);
                             NMS.showPortalEffect(pLoc);
                             NMS.showPortalEffect(loc);
                             if (giveWeakness)
@@ -94,8 +98,8 @@ public class Flash extends AbilityListener implements Disableable {
                             return;
                         }
                     }
-                    if (item.getTypeId() != flashOnItemId) {
-                        item.setTypeId(flashOnItemId);
+                    if (item.getType() != flashOnItemMat) {
+                        item.setType(flashOnItemMat);
                     }
                 }
             }
@@ -108,12 +112,12 @@ public class Flash extends AbilityListener implements Disableable {
             if (HungergamesApi.getHungergames().currentTime == getCooldown(p)) {
                 for (ItemStack i : p.getInventory().getContents()) {
                     if (isSpecialItem(i, flashItemName)) {
-                        i.setTypeId(flashOnItemId);
+                        i.setType(flashOnItemMat);
                     }
                 }
             }
             if (isSpecialItem(p.getItemOnCursor(), flashItemName)) {
-                p.getItemOnCursor().setTypeId(flashOnItemId);
+                p.getItemOnCursor().setType(flashOnItemMat);
             }
         }
     }

@@ -5,3 +5,4 @@ version: ${project.version}
 depend: [LibsHungergames]
 softdepend: [LibsDisguises]
 load: startup
+api-version: 1.13

@@ -30,8 +30,9 @@ public class Warder extends AbilityListener implements Disableable {
     public int cooldownSeconds = 60;
     public int fieldExistsFor = 5;
     private transient Hungergames hg = HungergamesApi.getHungergames();
-    private ArrayList<Integer> ignoreBlockTypes = new ArrayList<Integer>();
-    public int itemId = Material.BOOK.getId();
+    private ArrayList<Material> ignoreBlockTypes = new ArrayList<>();
+    public String item = Material.BOOK.name();
+    private Material itemMat = Material.matchMaterial(item);
     private transient HashMap<List<Block>, Integer> portals = new HashMap<List<Block>, Integer>();
     public int portalsHeight = 2;
     public int portalsWidth = 3;
@@ -40,31 +41,31 @@ public class Warder extends AbilityListener implements Disableable {
     public int warmupTicks = 10;
 
     public Warder() {
-        ignoreBlockTypes.add(0);
-        for (int b = 8; b < 12; b++)
-            ignoreBlockTypes.add(b);
-        ignoreBlockTypes.add(Material.SNOW.getId());
-        ignoreBlockTypes.add(Material.LONG_GRASS.getId());
-        ignoreBlockTypes.add(Material.RED_MUSHROOM.getId());
-        ignoreBlockTypes.add(Material.RED_ROSE.getId());
-        ignoreBlockTypes.add(Material.YELLOW_FLOWER.getId());
-        ignoreBlockTypes.add(Material.BROWN_MUSHROOM.getId());
-        ignoreBlockTypes.add(Material.SIGN_POST.getId());
-        ignoreBlockTypes.add(Material.WALL_SIGN.getId());
-        ignoreBlockTypes.add(Material.FIRE.getId());
-        ignoreBlockTypes.add(Material.TORCH.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_WIRE.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_OFF.getId());
-        ignoreBlockTypes.add(Material.REDSTONE_TORCH_ON.getId());
-        ignoreBlockTypes.add(Material.VINE.getId());
-        ignoreBlockTypes.add(Material.WATER_LILY.getId());
-        ignoreBlockTypes.add(Material.PORTAL.getId());
+        ignoreBlockTypes.add(Material.AIR);
+        ignoreBlockTypes.add(Material.WATER);
+        ignoreBlockTypes.add(Material.LAVA);
+        ignoreBlockTypes.add(Material.SNOW);
+        ignoreBlockTypes.add(Material.LEGACY_LONG_GRASS);
+        ignoreBlockTypes.add(Material.RED_MUSHROOM);
+        ignoreBlockTypes.add(Material.LEGACY_RED_ROSE);
+        ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
+        ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
+        ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
+        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.FIRE);
+        ignoreBlockTypes.add(Material.TORCH);
+        ignoreBlockTypes.add(Material.REDSTONE_WIRE);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_OFF);
+        ignoreBlockTypes.add(Material.LEGACY_REDSTONE_TORCH_ON);
+        ignoreBlockTypes.add(Material.VINE);
+        ignoreBlockTypes.add(Material.LEGACY_WATER_LILY);
+        ignoreBlockTypes.add(Material.LEGACY_PORTAL);
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && isSpecialItem(event.getItem(), warderBookName)
-                && event.getItem().getTypeId() == itemId && hasAbility(event.getPlayer())) {
+                && event.getItem().getType() == itemMat && hasAbility(event.getPlayer())) {
             if (cooldownItems.containsKey(event.getItem())) {
                 event.getPlayer()
                         .sendMessage(String.format(cooldownMessage, cooldownItems.get(event.getItem()) - hg.currentTime));
@@ -81,7 +82,7 @@ public class Warder extends AbilityListener implements Disableable {
                             }
                             int x = (i == 0 ? xx : -xx);
                             Block b = starter.clone().add(facing ? 0 : x, y, facing ? x : 0).getBlock();
-                            if (!ignoreBlockTypes.contains(b.getTypeId())) {
+                            if (!ignoreBlockTypes.contains(b.getType())) {
                                 blocked[i] = true;
                                 continue;
                             }
@@ -92,8 +93,8 @@ public class Warder extends AbilityListener implements Disableable {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(hg, new Runnable() {
                     public void run() {
                         for (Block b : portalBlocks)
-                            if (ignoreBlockTypes.contains(b.getTypeId())) {
-                                b.setTypeIdAndData(Material.PORTAL.getId(), (byte) 0, false);
+                            if (ignoreBlockTypes.contains(b.getType())) {
+                                b.setType(Material.LEGACY_PORTAL, false);
                             }
                     }
                 }, warmupTicks);
@@ -101,7 +102,7 @@ public class Warder extends AbilityListener implements Disableable {
                     public void run() {
                         portals.remove(portalBlocks);
                         for (Block b : portalBlocks)
-                            if (b.getType() == Material.PORTAL)
+                            if (b.getType() == Material.LEGACY_PORTAL)
                                 b.setType(Material.AIR);
                     }
                 }, warmupTicks + (fieldExistsFor * 20));

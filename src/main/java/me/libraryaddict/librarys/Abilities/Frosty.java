@@ -81,7 +81,7 @@ public class Frosty extends AbilityListener implements Disableable {
                         .contains("SPADE"))) {
             event.getBlock()
                     .getWorld()
-                    .dropItemNaturally(event.getBlock().getLocation().clone().add(0.5, 0, 0.5), new ItemStack(Material.SNOW_BALL));
+                    .dropItemNaturally(event.getBlock().getLocation().clone().add(0.5, 0, 0.5), new ItemStack(Material.LEGACY_SNOW_BALL));
         }
     }
 
@@ -111,7 +111,7 @@ public class Frosty extends AbilityListener implements Disableable {
             ids.put(snowball, Bukkit.getScheduler().scheduleSyncRepeatingTask(HungergamesApi.getHungergames(), new Runnable() {
                 public void run() {
                     Material type = snowball.getLocation().getBlock().getType();
-                    if (snowball.isDead() || type == Material.WATER || type == Material.STATIONARY_WATER) {
+                    if (snowball.isDead() || type == Material.WATER || type == Material.LEGACY_STATIONARY_WATER) {
                         transform(snowball);
                         if (!snowball.isDead())
                             snowball.remove();
@@ -143,7 +143,7 @@ public class Frosty extends AbilityListener implements Disableable {
                 for (int y = -iceHeight; y <= iceHeight; y++) {
                     Block b = loc.clone().add(x, y, z).getBlock();
                     if (b.getLocation().distance(loc) < iceRadius
-                            && (b.getType() == Material.WATER || b.getType() == Material.STATIONARY_WATER)) {
+                            && (b.getType() == Material.WATER || b.getType() == Material.LEGACY_STATIONARY_WATER)) {
                         b.setType(Material.ICE);
                     }
                 }

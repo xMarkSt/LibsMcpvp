@@ -46,24 +46,24 @@ public class McpvpListener implements Listener {
         chocolateMilkName = ChatColor.translateAlternateColorCodes('&', config.getString("ChocolateMilkName"));
         cactusJuiceName = ChatColor.translateAlternateColorCodes('&', config.getString("CactusJuiceName"));
         if (cactusJuice) {
-            ItemStack item = new ItemStack(Material.MUSHROOM_SOUP);
+            ItemStack item = new ItemStack(Material.LEGACY_MUSHROOM_SOUP);
             ItemMeta meta = item.getItemMeta();
             meta.setDisplayName(cactusJuiceName);
             item.setItemMeta(meta);
             ShapelessRecipe recipe = new ShapelessRecipe(item);
             recipe.addIngredient(Material.BOWL);
-            recipe.addIngredient(1, Material.CACTUS, 0);
-            recipe.addIngredient(1, Material.CACTUS, 0);
+            recipe.addIngredient(1, Material.CACTUS);
+            recipe.addIngredient(1, Material.CACTUS);
             Bukkit.addRecipe(recipe);
         }
         if (chocolateMilk) {
-            ItemStack item = new ItemStack(Material.MUSHROOM_SOUP);
+            ItemStack item = new ItemStack(Material.LEGACY_MUSHROOM_SOUP);
             ItemMeta meta = item.getItemMeta();
             meta.setDisplayName(chocolateMilkName);
             item.setItemMeta(meta);
             ShapelessRecipe recipe = new ShapelessRecipe(item);
             recipe.addIngredient(Material.BOWL);
-            recipe.addIngredient(1, Material.INK_SACK, 3);
+            recipe.addIngredient(1, Material.COCOA_BEANS);
             Bukkit.addRecipe(recipe);
         }
         joinUntil = mcpvp.getConfig().getInt("JoinDuration");
@@ -75,7 +75,7 @@ public class McpvpListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         ItemStack item = event.getItem();
-        if (item != null && item.getType() == Material.MUSHROOM_SOUP && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+        if (item != null && item.getType() == Material.LEGACY_MUSHROOM_SOUP && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
             String name = item.getItemMeta().getDisplayName();
             int restores = 0;
             if (chocolateMilk && name.equals(chocolateMilkName))

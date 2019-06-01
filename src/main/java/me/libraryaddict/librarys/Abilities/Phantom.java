@@ -33,7 +33,8 @@ public class Phantom extends AbilityListener implements Disableable {
     public String flightWoreOff = ChatColor.RED + "Your flight disappeared!";
     public boolean giveFlightArmor = true;
     private Hungergames hg = HungergamesApi.getHungergames();
-    public int phantomFeatherId = Material.FEATHER.getId();
+    public String phantomFeather = Material.FEATHER.name();
+    private Material phantomFeatherMat = Material.matchMaterial(phantomFeather);
     public String phantomFeatherName = "Condor's Feather";
     private HashMap<Player, ItemStack[]> playerArmor = new HashMap<Player, ItemStack[]>();
     public int secondsOfFlight = 5;
@@ -58,7 +59,7 @@ public class Phantom extends AbilityListener implements Disableable {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction().name().contains("RIGHT") && isSpecialItem(event.getItem(), phantomFeatherName)
-                && event.getItem().getTypeId() == phantomFeatherId && hasAbility(event.getPlayer())) {
+                && event.getItem().getType() == phantomFeatherMat && hasAbility(event.getPlayer())) {
             Player p = event.getPlayer();
             if (cooldown.containsKey(event.getItem()) && cooldown.get(event.getItem()) > hg.currentTime) {
                 p.sendMessage(String.format(cooldownMessage, hg.returnTime(cooldown.get(event.getItem()) - hg.currentTime)));
@@ -66,7 +67,7 @@ public class Phantom extends AbilityListener implements Disableable {
             }
             cooldown.put(event.getItem(), hg.currentTime + cooldownTime);
             flightLeft.put(p, secondsOfFlight + 1);
-            p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 2, 1);
+            p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 2, 1);
             p.setAllowFlight(true);
             p.setFlying(true);
             if (giveFlightArmor) {

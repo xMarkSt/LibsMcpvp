@@ -38,7 +38,8 @@ public class Pickpocket extends AbilityListener implements Disableable {
     public String pickpocketedMax = ChatColor.BLUE + "You have pickpocketed your max!";
     private transient HashMap<ItemStack, Pick> pickpockets = new HashMap<ItemStack, Pick>();
     public boolean stealHotbar = false;
-    public int thievingStickItemId = Material.BLAZE_ROD.getId();
+    public String thievingStickItem = Material.BLAZE_ROD.name();
+    private Material thievingStickItemMat = Material.matchMaterial(thievingStickItem);
 
     // Pickpocket. Multiple people can pickpocket at the time.
     // Store itemstack. Its used to measure the cooldown and items you can
@@ -86,7 +87,7 @@ public class Pickpocket extends AbilityListener implements Disableable {
     public void onInteract(PlayerInteractEntityEvent event) {
         ItemStack item = event.getPlayer().getItemInHand();
         if (event.getRightClicked() instanceof Player && isSpecialItem(item, thievingStickItemName)
-                && item.getTypeId() == thievingStickItemId && hasAbility(event.getPlayer())) {
+                && item.getType() == thievingStickItemMat && hasAbility(event.getPlayer())) {
             Pick pick = new Pick();
             if (pickpockets.containsKey(item))
                 pick = pickpockets.get(item);

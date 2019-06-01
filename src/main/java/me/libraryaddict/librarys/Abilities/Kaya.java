@@ -33,9 +33,9 @@ public class Kaya extends AbilityListener implements Disableable {
     public int upperHeightFromBlocks = 1;
 
     public Kaya() {
-        ShapelessRecipe recipe = new ShapelessRecipe(new ItemStack(Material.GRASS));
+        ShapelessRecipe recipe = new ShapelessRecipe(new ItemStack(Material.GRASS_BLOCK));
         recipe.addIngredient(Material.DIRT);
-        recipe.addIngredient(Material.SEEDS);
+        recipe.addIngredient(Material.LEGACY_SEEDS);
         Bukkit.addRecipe(recipe);
     }
 
@@ -47,11 +47,11 @@ public class Kaya extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onCraft(PrepareItemCraftEvent event) {
-        if (event.getRecipe().getResult() != null && event.getRecipe().getResult().getType() == Material.GRASS) {
+        if (event.getRecipe().getResult() != null && event.getRecipe().getResult().getType() == Material.GRASS_BLOCK) {
             for (HumanEntity entity : event.getViewers())
                 if (hasAbility((Player) entity))
                     return;
-            event.getInventory().setItem(0, new ItemStack(0, 0));
+            event.getInventory().setItem(0, new ItemStack(Material.AIR, 0));
         }
     }
 
@@ -82,7 +82,7 @@ public class Kaya extends AbilityListener implements Disableable {
                 for (int x = -distanceFromBlocks; x <= distanceFromBlocks; x++) {
                     for (int y = lowerHeightFromBlocks; y <= upperHeightFromBlocks; y++) {
                         Block block = loc.clone().add(x, y, z).getBlock();
-                        if (kayaBlocks.containsKey(block) && block.getType() == Material.GRASS) {
+                        if (kayaBlocks.containsKey(block) && block.getType() == Material.GRASS_BLOCK) {
                             if (kayaBlocks.get(block) != event.getPlayer()) {
                                 block.setType(Material.AIR);
                                 kayaBlocks.remove(block);
@@ -103,7 +103,7 @@ public class Kaya extends AbilityListener implements Disableable {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         if (!event.isCancelled())
-            if (event.getBlock().getType() == Material.GRASS && hasAbility(event.getPlayer())) {
+            if (event.getBlock().getType() == Material.GRASS_BLOCK && hasAbility(event.getPlayer())) {
                 kayaBlocks.put(event.getBlock(), event.getPlayer());
             }
     }

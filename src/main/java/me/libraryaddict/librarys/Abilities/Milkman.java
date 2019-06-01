@@ -29,7 +29,7 @@ public class Milkman extends AbilityListener implements Disableable {
     public String usedMilk = ChatColor.GREEN + "You have %s uses left!";
 
     private ItemStack clone(ItemStack item, Material newMaterial) {
-        ItemStack newItem = new ItemStack(newMaterial.getId(), item.getAmount(), item.getDurability());
+        ItemStack newItem = new ItemStack(newMaterial, item.getAmount());
         newItem.setItemMeta(item.getItemMeta());
         return newItem;
     }
@@ -71,7 +71,7 @@ public class Milkman extends AbilityListener implements Disableable {
                 ItemStack cloned = item.clone();
                 item.setAmount(item.getAmount() - 1);
                 if (item.getAmount() == 0)
-                    event.getPlayer().setItemInHand(new ItemStack(0));
+                    event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
                 kits.addItem(event.getPlayer(), clone(cloned, Material.MILK_BUCKET));
                 event.getPlayer().updateInventory();
             }
