@@ -11,8 +11,8 @@ import me.libraryaddict.Hungergames.Types.AbilityListener;
 
 public class Barbarian extends AbilityListener {
     private HashMap<ItemStack, Integer> kills = new HashMap<ItemStack, Integer>();
-    public int killsPerLevel = 3;
-    public String swordName = "Bloody Bane";
+    public int killsPerLevel = 1;
+    public String swordName = "Legendary Sword";
     public String[] weaponTypeUpgrades = new String[] { "STONE_SWORD", "IRON_SWORD", "DIAMOND_SWORD" };
 
     @EventHandler
