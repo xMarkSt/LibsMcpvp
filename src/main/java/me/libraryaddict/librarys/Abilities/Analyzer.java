@@ -60,18 +60,18 @@ public class Analyzer extends AbilityListener implements Disableable {
 
     private int getArmorValue(ItemStack armor) {
         Material mat = armor.getType();
-        if (mat == Material.LEATHER_HELMET || mat == Material.LEATHER_BOOTS || mat == Material.GOLD_BOOTS
+        if (mat == Material.LEATHER_HELMET || mat == Material.LEATHER_BOOTS || mat == Material.LEGACY_GOLD_BOOTS
                 || mat == Material.CHAINMAIL_BOOTS)
             return 1;
-        if (mat == Material.LEATHER_LEGGINGS || mat == Material.GOLD_HELMET || mat == Material.CHAINMAIL_HELMET
+        if (mat == Material.LEATHER_LEGGINGS || mat == Material.LEGACY_GOLD_HELMET || mat == Material.CHAINMAIL_HELMET
                 || mat == Material.IRON_HELMET || mat == Material.IRON_BOOTS)
             return 2;
-        if (mat == Material.LEATHER_CHESTPLATE || mat == Material.GOLD_LEGGINGS || mat == Material.DIAMOND_BOOTS
+        if (mat == Material.LEATHER_CHESTPLATE || mat == Material.LEGACY_GOLD_LEGGINGS || mat == Material.DIAMOND_BOOTS
                 || mat == Material.DIAMOND_HELMET)
             return 3;
         if (mat == Material.CHAINMAIL_LEGGINGS)
             return 4;
-        if (mat == Material.GOLD_CHESTPLATE || mat == Material.CHAINMAIL_CHESTPLATE || mat == Material.IRON_LEGGINGS)
+        if (mat == Material.LEGACY_GOLD_CHESTPLATE || mat == Material.CHAINMAIL_CHESTPLATE || mat == Material.IRON_LEGGINGS)
             return 5;
         if (mat == Material.IRON_LEGGINGS || mat == Material.DIAMOND_LEGGINGS)
             return 6;
@@ -89,7 +89,7 @@ public class Analyzer extends AbilityListener implements Disableable {
             if (countSoup) {
                 int i = 0;
                 for (ItemStack item : p.getInventory())
-                    if (item != null && item.getType() == Material.MUSHROOM_SOUP)
+                    if (item != null && item.getType() == Material.LEGACY_MUSHROOM_SOUP)
                         i++;
                 return String.format(informationPlayerSoup, p.getName(), p.getHealth(), p.getFoodLevel(), getArmorRating(p
                         .getInventory().getArmorContents()), HungergamesApi.getKitManager().getKitByPlayer(p).getName(), i);

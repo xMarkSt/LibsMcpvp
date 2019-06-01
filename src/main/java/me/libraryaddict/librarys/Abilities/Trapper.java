@@ -14,7 +14,8 @@ import me.libraryaddict.Hungergames.Types.HungergamesApi;
 
 public class Trapper extends AbilityListener {
     public boolean immuneToOwnTraps = false;
-    public int trapperItem = Material.STRING.getId();
+    public String trapperItem = Material.STRING.name();
+    private Material trapperItemMat = Material.matchMaterial(trapperItem);
     public String trapperItemName = "Trapper's String";
 
     @EventHandler
@@ -24,7 +25,7 @@ public class Trapper extends AbilityListener {
                 && HungergamesApi.getPlayerManager().getGamer(event.getPlayer()).isAlive()) {
             if (immuneToOwnTraps && b.getMetadata("Trapper").get(0).asString().equals(event.getPlayer().getName()))
                 return;
-            b.setType(Material.WEB);
+            b.setType(Material.LEGACY_WEB);
             b.removeMetadata("Trapper", HungergamesApi.getHungergames());
             b.getWorld().playSound(b.getLocation().clone(), Sound.UI_BUTTON_CLICK, 1, 10);
         }
@@ -33,7 +34,7 @@ public class Trapper extends AbilityListener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         ItemStack item = event.getItemInHand();
-        if (isSpecialItem(item, trapperItemName) && item.getTypeId() == trapperItem) {
+        if (isSpecialItem(item, trapperItemName) && item.getType() == trapperItemMat) {
             event.getBlock().setMetadata("Trapper",
                     new FixedMetadataValue(HungergamesApi.getHungergames(), event.getPlayer().getName()));
         }

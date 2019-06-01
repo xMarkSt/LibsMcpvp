@@ -32,9 +32,10 @@ public class Array extends AbilityListener implements Disableable {
         long expires;
     }
 
-    public int arrayBeaconId = Material.BEACON.getId();
+    public String arrayBeaconItem = Material.BEACON.name();
     public int arrayExpireTime = 30;
     public String arrayItemName = ChatColor.WHITE + "Array";
+    private Material arrayBeacon = Material.matchMaterial(arrayBeaconItem);
     private transient HashMap<HealArray, Player> beacons = new HashMap<HealArray, Player>();
 
     private transient PlayerManager pm = HungergamesApi.getPlayerManager();
@@ -64,7 +65,7 @@ public class Array extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
-        if (isSpecialItem(event.getItemInHand(), arrayItemName) && event.getItemInHand().getTypeId() == arrayBeaconId
+        if (isSpecialItem(event.getItemInHand(), arrayItemName) && event.getItemInHand().getType() == arrayBeacon
                 && hasAbility(event.getPlayer())) {
             // Create beacon
             Block b = event.getBlock();
@@ -74,7 +75,7 @@ public class Array extends AbilityListener implements Disableable {
             for (int i = 0; i < 3; i++) {
                 heal.blocks[i] = b;
                 if (i != 2)
-                    b.setType(Material.FENCE);
+                    b.setType(Material.LEGACY_FENCE);
                 else
                     b.setType(Material.GLOWSTONE);
                 b = b.getRelative(BlockFace.UP);
@@ -90,7 +91,7 @@ public class Array extends AbilityListener implements Disableable {
             HealArray heal = itel.next();
             Player player = beacons.get(heal);
             if (heal.expires < System.currentTimeMillis()) {
-                ItemStack item = new ItemStack(arrayBeaconId);
+                ItemStack item = new ItemStack(arrayBeacon);
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName(arrayItemName);
                 item.setItemMeta(meta);

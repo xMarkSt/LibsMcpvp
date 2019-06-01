@@ -25,14 +25,14 @@ public class Hunter extends AbilityListener implements Disableable {
             while (itel.hasNext()) {
                 ItemStack item = itel.next();
                 if (item == null
-                        || (item.getType() != Material.RAW_BEEF && item.getType() != Material.RAW_CHICKEN && item.getType() != Material.PORK))
+                        || (item.getType() != Material.LEGACY_RAW_BEEF && item.getType() != Material.LEGACY_RAW_CHICKEN && item.getType() != Material.LEGACY_PORK))
                     continue;
-                if (item.getType() == Material.RAW_CHICKEN)
+                if (item.getType() == Material.LEGACY_RAW_CHICKEN)
                     toAdd.add(new ItemStack(Material.COOKED_CHICKEN, item.getAmount()));
-                else if (item.getType() == Material.RAW_BEEF)
+                else if (item.getType() == Material.LEGACY_RAW_BEEF)
                     toAdd.add(new ItemStack(Material.COOKED_BEEF, item.getAmount()));
-                else if (item.getType() == Material.PORK)
-                    toAdd.add(new ItemStack(Material.GRILLED_PORK, item.getAmount()));
+                else if (item.getType() == Material.LEGACY_PORK)
+                    toAdd.add(new ItemStack(Material.LEGACY_GRILLED_PORK, item.getAmount()));
                 itel.remove();
             }
             for (ItemStack item : toAdd)

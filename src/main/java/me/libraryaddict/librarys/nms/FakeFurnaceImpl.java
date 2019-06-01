@@ -1,16 +1,22 @@
 package me.libraryaddict.librarys.nms;
 
-import lombok.SneakyThrows;
-import net.minecraft.server.v1_12_R1.*;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
+import lombok.*;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import net.minecraft.server.v1_8_R3.EntityHuman;
+import net.minecraft.server.v1_8_R3.Item;
+import net.minecraft.server.v1_8_R3.ItemStack;
+import net.minecraft.server.v1_8_R3.RecipesFurnace;
+import net.minecraft.server.v1_8_R3.TileEntityFurnace;
+
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 
 /* package */ class FakeFurnaceImpl extends TileEntityFurnace implements FakeFurnace {
     private double burnSpeed;
@@ -23,8 +29,6 @@ import java.util.stream.Collectors;
      * displaying the progress I still have to use "cookTime"
      */
     private double myCookTime;
-    private int burnTime;
-    private int cookTime;
 
     @SneakyThrows(IllegalAccessException.class) // Shouldn't happen
     public FakeFurnaceImpl() {
@@ -66,49 +70,49 @@ import java.util.stream.Collectors;
         if (!canBurn()) {
             return;
         }
-        ItemStack itemstack = getContents().get(0) != null ? RecipesFurnace.getInstance().getResult(getContents().get(0)) : null;
+        ItemStack itemstack = getContents()[0] != null ? RecipesFurnace.getInstance().getResult(getContents()[0]) : null;
         // Nothing in there? Then put something there.
-        if (getContents().get(2) == null) {
-            getContents().set(2, itemstack.cloneItemStack());
+        if (getContents()[2] == null) {
+            getContents()[2] = itemstack.cloneItemStack();
         }
         // Burn ahead
-        else if (getContents().get(2).doMaterialsMatch(itemstack)) {
-            getContents().get(2).setCount(getContents().get(2).getCount() + itemstack.getCount());
+        else if (getContents()[2].doMaterialsMatch(itemstack)) {
+            getContents()[2].count += itemstack.count;
         }
         // Consume the ingredient item
-        Item craftingResult = getContents().get(0).getItem().q();
+        Item craftingResult = getContents()[0].getItem().q();
         if (craftingResult != null) {
-            getContents().set(0, new ItemStack(craftingResult));
+            getContents()[0] = new ItemStack(craftingResult);
         } else {
-            getContents().get(0).setCount(getContents().get(0).getCount() - 1);
+            getContents()[0].count--;
             // Let 0 be null
-            if (getContents().get(0).getCount() <= 0) {
-                getContents().set(0, null);
+            if (getContents()[0].count <= 0) {
+                getContents()[0] = null;
             }
         }
     }
 
     private boolean canBurn() {
         // No ingredient, no recipe
-        if (getContents().get(0) == null) {
+        if (getContents()[0] == null) {
             return false;
         }
-        ItemStack itemstack = RecipesFurnace.getInstance().getResult(getContents().get(0));
+        ItemStack itemstack = RecipesFurnace.getInstance().getResult(getContents()[0]);
         // No recipe, no burning
         if (itemstack == null) {
             return false;
         }
         // Free space? Let's burn!
-        else if (getContents().get(2) == null) {
+        else if (getContents()[2] == null) {
             return true;
         }
         // Materials don't match? Too bad.
-        else if (!getContents().get(2).doMaterialsMatch(itemstack)) {
+        else if (!getContents()[2].doMaterialsMatch(itemstack)) {
             return false;
         }
         // As long as there is space, we can burn
-        else if ((getContents().get(2).getCount() + itemstack.getCount() <= getMaxStackSize())
-                && (getContents().get(2).getCount() + itemstack.getCount() <= getContents().get(2).getMaxStackSize())) {
+        else if ((getContents()[2].count + itemstack.count <= getMaxStackSize())
+                && (getContents()[2].count + itemstack.count <= getContents()[2].getMaxStackSize())) {
             return true;
         }
         return false;
@@ -141,31 +145,31 @@ import java.util.stream.Collectors;
 
     @SneakyThrows(IllegalAccessException.class)
     public void tick() {
-        int newID = getContents().get(0) == null ? 0 : Item.getId(getContents().get(0).getItem());
+        int newID = getContents()[0] == null ? 0 : Item.getId(getContents()[0].getItem());
         // Has the item been changed?
         if (newID != lastID) {
             // Then reset the progress!
             myCookTime = 0.0D;
             lastID = newID;
             // And, most important: change the melt speed
-            meltSpeed = getContents().get(0) != null ? 1 : 0;
+            meltSpeed = getContents()[0] != null ? 1 : 0;
         }
         // So, can we now finally burn?
-        if (canBurn() && !isBurning() && (getFuelTime(getContents().get(1)) > 0)) {
+        if (canBurn() && !isBurning() && (getFuelTime(getContents()[1]) > 0)) {
             // I have no idea what "ticksForCurrentFuel" is good for, but it
             // works fine like this
-            TICKS_FOR_CURRENT_FUEL_FIELD.setInt(this, burnTime = getFuelTime(getContents().get(1)));
+            TICKS_FOR_CURRENT_FUEL_FIELD.setInt(this, burnTime = getFuelTime(getContents()[1]));
             // Before we remove the item: how fast does it burn?
-            burnSpeed = getBurnSpeed(getContents().get(1));
+            burnSpeed = getBurnSpeed(getContents()[1]);
             // If it's a container item (lava bucket), we only consume its
             // getContents() (not like evil Notch!)
 
             // If it's not a container, consume it! Om nom nom nom!
             {
-                getContents().get(1).setCount(getContents().get(1).getCount() - 1);
+                getContents()[1].count--;
                 // Let 0 be null
-                if (getContents().get(1).getCount() <= 0) {
-                    getContents().set(1, null);
+                if (getContents()[1].count <= 0) {
+                    getContents()[1] = null;
                 }
             }
         }
@@ -199,10 +203,8 @@ import java.util.stream.Collectors;
 
     @Override
     public List<org.bukkit.inventory.ItemStack> getItems() {
-        List<org.bukkit.inventory.ItemStack> items = new ArrayList<org.bukkit.inventory.ItemStack>();
-        for (ItemStack stack : getContents()) {
-            items.add(CraftItemStack.asBukkitCopy(stack));
-        }
-        return items;
+        return Arrays.stream(getContents())
+                .map(CraftItemStack::asBukkitCopy)
+                .collect(Collectors.toList());
     }
 }

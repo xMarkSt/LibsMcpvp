@@ -13,7 +13,7 @@ Kits:
     Description: 'The analyzer kit shows you information on the entity you are currently looking at! You must be holding a item else you will be unable to look at the information being feed to your screen. From health to items in a itemstack. This can do it all!'
     Free: true
     Price: 0
-    Icon: THIN_GLASS 0 1
+    Icon: GLASS_PANE 0 1
     Ability:
       - Analyzer
   Archer:
@@ -46,18 +46,18 @@ Kits:
     Description: 'This sword was forged in blood at the dawn of man. Time passed and it weakened. But now it has been found again! To raise its combat power you must kill enemies! Every 3rd enemy it kills. The sword upgrades!'
     Free: true
     Price: 0
-    Icon: WOOD_SWORD 0 1
+    Icon: WOODEN_SWORD 0 1
     Items:
-      - WOOD_SWORD 0 1 Name=Bloody_Bane Unlootable 1 UniqueItem Unbreakable
+      - WOODEN_SWORD 0 1 Name=Bloody_Bane Unlootable 1 UniqueItem Unbreakable
     Ability:
       - Barbarian
   Beastmaster:
     Description: 'The Beastmaster kit allows you to instantly tame the 3 wolves you spawn. As well as 4 bones. The wolves can be very useful when in 1 vs 1 combat, and often gives you that winning edge over your enemy in fights! You also have a 100% chance to tame any wolf, so no bone shall be wasted!'
     Free: true
     Price: 0
-    Icon: MONSTER_EGG 93 1
+    Icon: CHICKEN_SPAWN_EGG 0 1
     Items:
-      - MONSTER_EGG 95 3
+      - WOLF_SPAWN_EGG 0 3
       - BONE 0 4
     Ability:
       - Beastmaster
@@ -88,17 +88,17 @@ Kits:
     Description: 'You are stuck in a hole with your friend. You are feeling peckish. You look at your friend.. ARGH NO! WHAT ARE YOU DOING! You gain a fish, ocelot egg and you gain hunger when you hit someone! They get a hunger effect'
     Free: true
     Price: 0
-    Icon: MONSTER_EGG 98 1
+    Icon: OCELOT_SPAWN_EGG 0 1
     Items:
-      - MONSTER_EGG 98 1
-      - RAW_FISH 0 1
+      - OCELOT_SPAWN_EGG 0 1
+      - COD 0 1
     Ability:
       - Cannibal
   Chameleon:
     Description: 'The Chameleon kit is a very sneaky one! If you like to lurk around, then this kit is for you! You are disguised when you hit a mob, you are undisguised when you are attacked or attack a player! Be careful not to act weirdly when around your target! Remember, just because they think you are a pig. It doesn''t mean their compass is fooled!'
     Free: true
     Price: 0
-    Icon: MONSTER_EGG 0 1
+    Icon: GHAST_SPAWN_EGG 0 1
     Ability:
       - Chameleon
   Chemist:
@@ -131,17 +131,17 @@ Kits:
     Description: 'God gave you a green thumb. You know how to use this.. By hogging all the food you grow ofc! Instantly grow wheat by planting it, and instantly grow trees just by placing a sapling!'
     Free: true
     Price: 0
-    Icon: SEEDS 0 1
+    Icon: WHEAT_SEEDS 0 1
     Ability:
       - Cultivator
   Demoman:
     Description: 'Its time to destroy that thief for breaking into your home! Place a stone pressure plate on gravel to create a landmine! Step on it to blow it up! The explosion is a little bigger then TNT. Careful however! You can set off your own landmines!'
     Free: true
     Price: 0
-    Icon: STONE_PLATE 0 1
+    Icon: STONE_PRESSURE_PLATE 0 1
     Items:
       - GRAVEL 0 2
-      - STONE_PLATE 0 2
+      - STONE_PRESSURE_PLATE 0 2
     Ability:
       - Demoman
   DiamondWarrior:
@@ -223,9 +223,9 @@ Kits:
     Description: 'With a mere swing of your redstone torch you teleport to where you were looking, and receive have the distance in weakness II. One you teleport, players will see lightning visually strike you. The redstone torch turns off when its out of charge and turns back on when it''s charge has recovered'
     Free: true
     Price: 0
-    Icon: REDSTONE_TORCH_ON 0 1
+    Icon: REDSTONE_TORCH 0 1
     Items:
-      - REDSTONE_TORCH_ON 0 1 Name=Flash UniqueItem Unlootable 1
+      - REDSTONE_TORCH 0 1 Name=Flash UniqueItem Unlootable 1
     Ability:
       - Flash
   Forger:
@@ -243,7 +243,7 @@ Kits:
     Price: 0
     Icon: SNOW 0 1
     Items:
-      - SNOW_BALL 0 5
+      - SNOWBALL 0 5
     Ability:
       - Frosty
   Gambler:
@@ -266,7 +266,7 @@ Kits:
     Description: 'You got sick of picking up all their loot, so just before you kill them off you say ''Hey. Take off dat armor for me and items and stick it into a chest''. Perfect for those who hate to pick their food up from the ground!'
     Free: true
     Price: 0
-    Icon: DIAMOND_SPADE 0 1
+    Icon: DIAMOND_SHOVEL 0 1
     Ability:
       - Gravedigger
   Hermit:
@@ -280,7 +280,7 @@ Kits:
     Description: 'The Hunter kit is pretty neat when surrounded by edible animals. This kit saves you time, since you wont have to cook the raw and bloody meat that they normally drop!'
     Free: true
     Price: 0
-    Icon: PORK 0 1
+    Icon: PORKCHOP 0 1
     Ability:
       - Hunter
   JackHammer:
@@ -305,9 +305,9 @@ Kits:
     Description: 'You are given jumping boots which you can click with them to double jump! Its retarded and the normal way is to stick them on your feet. But hey! At least you can hop around right!'
     Free: true
     Price: 0
-    Icon: FIREWORK 0 1
+    Icon: FIREWORK_ROCKET 0 1
     Items:
-      - FIREWORK 0 1 Unlootable 1 Name=Kangaroo_Fireworks
+      - FIREWORK_ROCKET 0 1 Unlootable 1 Name=Kangaroo_Fireworks
     Ability:
       - Kangaroo
   Kaya:
@@ -316,7 +316,7 @@ Kits:
     Price: 0
     Icon: GRASS 0 1
     Items:
-      - GRASS 0 16
+      - GRASS_BLOCK 0 16
     Ability:
       - Kaya
   Launcher:
@@ -332,9 +332,9 @@ Kits:
     Description: 'You whack your mighty axe once, twice, thrice against the trunk of this great tree. With a loud groan the entire tree topples. Every piece of wood above that wood was broken!'
     Free: true
     Price: 0
-    Icon: LOG 0 1
+    Icon: OAK_LOG 0 1
     Items:
-      - WOOD_AXE 0 1
+      - WOODEN_AXE 0 1
     Ability:
       - Lumberjack
   Madman:
@@ -373,14 +373,14 @@ Kits:
     Description: 'At night you used to sleep afraid of the monsters. Until you started rubbing rotten flesh into your skin. Surprise surprise! The monsters seem to think you are one of them!'
     Free: true
     Price: 0
-    Icon: SKULL_ITEM 2 1
+    Icon: ZOMBIE_HEAD 0 1
     Ability:
       - Monster
   Necro:
     Description: 'The Necro kit is great for those who hates the zombies and skeletons! Instantly KO them as they approach you!'
     Free: true
     Price: 0
-    Icon: SKULL_ITEM 0 1
+    Icon: SKELETON_SKULL 0 1
     Ability:
       - Necro
   Phantom:
@@ -415,38 +415,38 @@ Kits:
     Icon: FLINT_AND_STEEL 0 1
     Items:
       - FLINT_AND_STEEL 0 1
-      - FIREBALL 0 5
+      - FIRE_CHARGE 0 5
     Ability:
       - Pyro
   Reaper:
     Description: 'With a mere swipe of your hoe you curse players to pain. They are given a wither effect which damages them over time'
     Free: true
     Price: 0
-    Icon: WOOD_HOE 0 1
+    Icon: WOODEN_HOE 0 1
     Items:
-      - WOOD_HOE -1000 1 Name=Death_Scythe Unlootable 1
+      - WOODEN_HOE -1000 1 Name=Death_Scythe Unlootable 1
     Ability:
       - Reaper
   Rider:
     Description: 'You are given a riding crop which you can use to summon a horse, no one else can ride your horse and to make it disappear, just use your riding crop again! It died? Summon another!'
     Free: true
     Price: 0
-    Icon: CARROT_STICK 0 1
+    Icon: CARROT_ON_A_STICK 0 1
     Items:
-      - 'CARROT_STICK 0 1 Name=Summon:_Mighty_Steed Unlootable 1'
+      - 'CARROT_ON_A_STICK 0 1 Name=Summon:_Mighty_Steed Unlootable 1'
     Ability:
       - Rider
   Salvager:
     Description: 'The Tinkerer kit will give you an anvil which allows you to turn items back into their original crafting elements. Great for converting your mining instruments into weapons of war'
     Free: true
     Price: 0
-    Icon: WORKBENCH 0 1
+    Icon: CRAFTING_TABLE 0 1
     Items:
       - ANVIL 0 1
     Ability:
       - Salvager
   Santa:
-    Description: 'The santa kit is great for those that love to team! Every minute you are given a random present with a kit in it. Give the present to someone who owns said kit and they will get their starting items back! Give it to a urgal and they get their strength potions back! Some kits are on the naughty list however and have a lower chance of appearing however..'
+    Description: 'The santa kit is great for those that love to team! Every minute you are given a random present with a kit in it. Give the presentMat to someone who owns said kit and they will get their starting items back! Give it to a urgal and they get their strength potions back! Some kits are on the naughty list however and have a lower chance of appearing however..'
     Free: true
     Price: 0
     Icon: WRITTEN_BOOK 0 1
@@ -475,16 +475,16 @@ Kits:
     Description: 'You don''t like having to look for that iron ore did you. So you kidnapped a ghost and grabbed their eye. Using this you can turn a area to glass visually, allowing you to look for that iron ore, caves and hidden player bases'
     Free: true
     Price: 0
-    Icon: EYE_OF_ENDER 0 1
+    Icon: ENDER_EYE 0 1
     Items:
-      - EYE_OF_ENDER 0 1 Name=Ghost_Eye Unlootable 1 UniqueItem
+      - ENDER_EYE 0 1 Name=Ghost_Eye Unlootable 1 UniqueItem
     Ability:
       - Seeker
   Snail:
     Description: 'Everytime you hit someone you have a 1/3 chance of granting them the gift of slowness II'
     Free: true
     Price: 0
-    Icon: WEB 0 1
+    Icon: COBWEB 0 1
     Ability:
       - Snail
   Spectre:
@@ -500,9 +500,9 @@ Kits:
     Description: 'You start with 6 snowballs (You can replenish them) which create a 2x2 spider web where they land. You can only throw 3 snowballs until your web shooters demand a cooldown of 30 seconds. While in cobwebs you gain a speed II boost'
     Free: true
     Price: 0
-    Icon: SNOW_BALL 0 1
+    Icon: SNOWBALL 0 1
     Items:
-      - SNOW_BALL 0 6
+      - SNOWBALL 0 6
     Ability:
       - Spiderman
   Stomper:
@@ -516,7 +516,7 @@ Kits:
     Description: 'The Summoner kit gives you the ability to capture any mob your thrown egg hits. When hit the mob will disappear and a monster egg will spawn in its place. Pick it up and choose where the monster appears next!'
     Free: true
     Price: 0
-    Icon: MOB_SPAWNER 0 1
+    Icon: SPAWNER 0 1
     Items:
       - EGG 0 3
     Ability:
@@ -525,9 +525,9 @@ Kits:
     Description: 'Spawn with 10 special snowballs you can throw at someone to switch positions with them! The snowballs have a 10 second cooldown after each one. Great for getting that guy off the tower!'
     Free: true
     Price: 0
-    Icon: SNOW_BALL 0 1 Unlootable 1
+    Icon: SNOWBALL 0 1 Unlootable 1
     Items:
-      - SNOW_BALL 0 10 Unlootable 1 Name=Switcher_Snowball
+      - SNOWBALL 0 10 Unlootable 1 Name=Switcher_Snowball
     Ability:
       - Switcher
   Tank:
@@ -549,9 +549,9 @@ Kits:
     Description: 'Right click with a wooden axe on a block to call down a lightning strike! Great for aggressive strategies. The block you click turns into netherrack and the block above turns into fire! Great for lighting up a cave system!'
     Free: true
     Price: 0
-    Icon: WOOD_AXE 0 1
+    Icon: WOODEN_AXE 0 1
     Items:
-      - WOOD_AXE 0 1
+      - WOODEN_AXE 0 1
     Ability:
       - Thor
   Tracker:
@@ -609,7 +609,7 @@ Kits:
     Description: 'You are given a book in which you record the names, time, location, cause and the killer of your fallen foes. Using this book you can view the last 10 deaths. You also have a one use /body <Name> to bet on the next player to die! If your bet works out, you get all their loot you can carry!'
     Free: true
     Price: 0
-    Icon: RAW_BEEF 0 1
+    Icon: BEEF 0 1
     Items:
       - ENCHANTED_BOOK 0 1 Name=Death_Note Unlootable 1
     Ability:
@@ -627,9 +627,9 @@ Kits:
     Description: 'The Nightwalker kit is given constant Strength I and Speed I effect at night, however during the day is given Weakness I. Wolves will also avoid attacking you. Spawn with a clock to check if it is night or day.'
     Free: true
     Price: 0
-    Icon: WATCH 0 1
+    Icon: CLOCK 0 1
     Items:
-      - WATCH 0 1 Unlootable 1
+      - CLOCK 0 1 Unlootable 1
     Ability:
       - Werewolf
   Wisp:

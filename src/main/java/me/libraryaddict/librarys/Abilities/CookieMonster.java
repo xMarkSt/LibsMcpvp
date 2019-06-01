@@ -41,7 +41,7 @@ public class CookieMonster extends AbilityListener implements Disableable {
                     }
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
                     if (event.getItem().getAmount() == 0)
-                        p.setItemInHand(new ItemStack(0));
+                        p.setItemInHand(new ItemStack(Material.AIR));
                     cookieExpires.put(p, System.currentTimeMillis() + delayInMillisecondsBetweenCookies);
                 }
             }
@@ -51,7 +51,7 @@ public class CookieMonster extends AbilityListener implements Disableable {
     @EventHandler
     public void onDamage(BlockDamageEvent event) {
         if (hasAbility(event.getPlayer())) {
-            if (event.getBlock().getType() == Material.LONG_GRASS && new Random().nextInt(oneChanceInWhatOfCookies) == 0) {
+            if (event.getBlock().getType() == Material.LEGACY_LONG_GRASS && new Random().nextInt(oneChanceInWhatOfCookies) == 0) {
                 Location loc = event.getBlock().getLocation().clone();
                 loc.getWorld().dropItemNaturally(loc.add(0.5, 0, 0.5), new ItemStack(Material.COOKIE));
             }

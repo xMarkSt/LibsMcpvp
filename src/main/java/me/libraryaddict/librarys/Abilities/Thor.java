@@ -23,7 +23,8 @@ public class Thor extends AbilityListener implements Disableable {
     public boolean doNetherackAndFire = true;
     private transient HashMap<String, Long> lastThored = new HashMap<String, Long>();
     public boolean protectThorer = true;
-    public int thorItemId = Material.WOOD_AXE.getId();
+    public String thorItem = Material.WOODEN_AXE.name();
+    private Material thorItemMat = Material.matchMaterial(thorItem);
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
@@ -37,7 +38,7 @@ public class Thor extends AbilityListener implements Disableable {
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Player p = event.getPlayer();
-            if (hasAbility(p) && event.getItem() != null && event.getItem().getTypeId() == thorItemId) {
+            if (hasAbility(p) && event.getItem() != null && event.getItem().getType() == thorItemMat) {
                 if (!lastThored.containsKey(p.getName()) || lastThored.get(p.getName()) < System.currentTimeMillis()) {
                     lastThored.put(p.getName(), System.currentTimeMillis() + (cooldown * 1000));
                     if (doNetherackAndFire) {

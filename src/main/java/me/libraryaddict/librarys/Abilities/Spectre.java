@@ -36,8 +36,10 @@ public class Spectre extends AbilityListener implements Disableable {
     public boolean playSound = true;
     //public String soundName = Sound.ENTITY_GENERIC_SPLASH.name();
     public String spectreItemName = ChatColor.WHITE + "Spectre Dust";
-    public int spectreOffItemId = Material.SUGAR.getId();
-    public int spectreOnItemId = Material.REDSTONE.getId();
+    public String spectreOffItem = Material.SUGAR.name();
+    private Material spectreOffItemMat = Material.matchMaterial(spectreOffItem);
+    public String spectreOnItem = Material.REDSTONE.name();
+    private Material spectreOnItemMat = Material.matchMaterial(spectreOnItem);
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
@@ -78,10 +80,10 @@ public class Spectre extends AbilityListener implements Disableable {
                 Player p = event.getPlayer();
                 p.updateInventory();
                 int currentTime = HungergamesApi.getHungergames().currentTime;
-                if (item.getTypeId() == spectreOffItemId) {
+                if (item.getType() == spectreOffItemMat) {
                     p.sendMessage(String.format(cooldownMessage, (-(currentTime - cooldown.get(item)))));
-                } else if (item.getTypeId() == spectreOnItemId) {
-                    item.setTypeId(spectreOffItemId);
+                } else if (item.getType() == spectreOnItemMat) {
+                    item.setType(spectreOffItemMat);
                     cooldown.put(item, cooldownTime + currentTime);
                     invis.put(p, currentTime + invisLength);
                     if (addInvisToSpectre)
@@ -114,7 +116,7 @@ public class Spectre extends AbilityListener implements Disableable {
                             itel.remove();
                             for (ItemStack i : gamer.getPlayer().getInventory().getContents()) {
                                 if (i.equals(item)) {
-                                    i.setTypeId(spectreOnItemId);
+                                    i.setType(spectreOnItemMat);
                                     carryOn = true;
                                     break;
                                 }
@@ -123,7 +125,7 @@ public class Spectre extends AbilityListener implements Disableable {
                                 break;
                         }
                         if (gamer.getPlayer().getItemOnCursor() != null && gamer.getPlayer().getItemOnCursor().equals(item)) {
-                            gamer.getPlayer().getItemOnCursor().setTypeId(spectreOnItemId);
+                            gamer.getPlayer().getItemOnCursor().setType(spectreOnItemMat);
                             carryOn = true;
                             break;
                         }
@@ -133,7 +135,7 @@ public class Spectre extends AbilityListener implements Disableable {
                     for (Item itemEntity : HungergamesApi.getHungergames().world.getEntitiesByClass(Item.class)) {
                         if (itemEntity.getItemStack().equals(item)) {
                             itel.remove();
-                            itemEntity.getItemStack().setTypeId(spectreOnItemId);
+                            itemEntity.getItemStack().setType(spectreOnItemMat);
                             carryOn = true;
                             break;
                         }

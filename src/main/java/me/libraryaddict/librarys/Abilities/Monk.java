@@ -18,7 +18,8 @@ public class Monk extends AbilityListener implements Disableable {
     public int cooldown = 15;
     public String monkCooldownMessage = ChatColor.BLUE + "You may monk them again in %s seconds!";
     public String monkedMessage = ChatColor.BLUE + "Monked!";
-    public int monkItemId = Material.BLAZE_ROD.getId();
+    public String monkItem = Material.BLAZE_ROD.name();
+    private Material monkItemMat = Material.matchMaterial(monkItem);
     public String monkItemName = ChatColor.WHITE + "Monk Staff";
     private transient HashMap<ItemStack, Long> monkStaff = new HashMap<ItemStack, Long>();
     public boolean sendThroughInventory = true;
@@ -26,7 +27,7 @@ public class Monk extends AbilityListener implements Disableable {
     @EventHandler
     public void onRightClick(PlayerInteractEntityEvent event) {
         ItemStack item = event.getPlayer().getItemInHand();
-        if (event.getRightClicked() instanceof Player && isSpecialItem(item, monkItemName) && item.getTypeId() == monkItemId
+        if (event.getRightClicked() instanceof Player && isSpecialItem(item, monkItemName) && item.getType() == monkItemMat
                 && hasAbility(event.getPlayer())) {
             long lastUsed = 0;
             if (monkStaff.containsKey(item))
@@ -40,10 +41,10 @@ public class Monk extends AbilityListener implements Disableable {
                 int slot = new Random().nextInt(sendThroughInventory ? 36 : 9);
                 ItemStack replaced = inv.getItemInHand();
                 if (replaced == null)
-                    replaced = new ItemStack(0);
+                    replaced = new ItemStack(Material.AIR);
                 ItemStack replacer = inv.getItem(slot);
                 if (replacer == null)
-                    replacer = new ItemStack(0);
+                    replacer = new ItemStack(Material.AIR);
                 inv.setItemInHand(replacer);
                 inv.setItem(slot, replaced);
                 monkStaff.put(item, System.currentTimeMillis());

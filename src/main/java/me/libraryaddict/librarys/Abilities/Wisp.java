@@ -2,11 +2,8 @@ package me.libraryaddict.librarys.Abilities;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
@@ -101,7 +98,7 @@ public class Wisp extends AbilityListener implements Disableable {
             ItemStack item = event.getItem();
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() == 0)
-                p.setItemInHand(new ItemStack(0));
+                p.setItemInHand(new ItemStack(Material.AIR));
             final WillOfWisp wisp = new WillOfWisp();
             wisp.caster = p;
             p.getWorld().playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 0);

@@ -27,13 +27,13 @@ public class Scorcher extends AbilityListener implements Disableable {
         if (isSpecialItem(boots, bootsName) && isSpecialItem(p.getItemInHand(), blazeName) && hasAbility(p)) {
             final Block b = event.getFrom().getBlock();
             Material type = b.getType();
-            if ((type == Material.AIR || type == Material.SNOW || type == Material.LONG_GRASS)
+            if ((type == Material.AIR || type == Material.SNOW || type == Material.LEGACY_LONG_GRASS)
                     && b.getRelative(BlockFace.DOWN).getType() != Material.AIR) {
                 if (p.hasMetadata("Scorching")
                         && p.getMetadata("Scorching").get(0).asInt() != HungergamesApi.getHungergames().currentTime) {
                     boots.setDurability((short) (boots.getDurability() + 1));
                     if (boots.getDurability() >= boots.getType().getMaxDurability())
-                        p.getInventory().setBoots(new ItemStack(0));
+                        p.getInventory().setBoots(new ItemStack(Material.AIR));
                 }
                 p.setMetadata("Scorching",
                         new FixedMetadataValue(HungergamesApi.getHungergames(), HungergamesApi.getHungergames().currentTime));

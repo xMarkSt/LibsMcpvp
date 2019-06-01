@@ -19,7 +19,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         ItemStack item = p.getItemInHand();
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && item != null && item.getType() == Material.MONSTER_EGG) {
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && item != null && item.getType() == Material.LEGACY_MONSTER_EGG) {
             if (hasAbility(event.getPlayer()) && item.getDurability() == (byte) 95) {
                 event.setCancelled(true);
                 Wolf wolf = (Wolf) p.getWorld().spawnEntity(

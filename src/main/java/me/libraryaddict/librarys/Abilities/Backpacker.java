@@ -25,15 +25,16 @@ public class Backpacker extends AbilityListener implements Disableable {
 
     private transient HashMap<Player, Inventory> backpack = new HashMap<Player, Inventory>();
     public int backpackInventoryRows = 6;
-    public int backpackItem = Material.ENDER_CHEST.getId();
+    public String backpackItem = Material.ENDER_CHEST.name();
     public String backPackItemDescription = ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC
             + "Double click this chest to open your backpack!";
     public String backPackItemName = ChatColor.LIGHT_PURPLE + "Backpack";
     private transient HashMap<Player, Long> chestClick = new HashMap<Player, Long>();
+    private Material backpackItemMat = Material.matchMaterial(backpackItem);
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (isSpecialItem(event.getCurrentItem(), backPackItemName) && event.getCurrentItem().getTypeId() == backpackItem) {
+        if (isSpecialItem(event.getCurrentItem(), backPackItemName) && event.getCurrentItem().getType() == backpackItemMat) {
             event.setCancelled(true);
             final Player p = (Player) event.getWhoClicked();
             if (chestClick.containsKey(p) && chestClick.get(p) > System.currentTimeMillis() - 1000) {
@@ -59,7 +60,7 @@ public class Backpacker extends AbilityListener implements Disableable {
         Iterator<ItemStack> itel = event.getDrops().iterator();
         while (itel.hasNext()) {
             ItemStack item = itel.next();
-            if (isSpecialItem(item, backPackItemName) && item.getTypeId() == backpackItem) {
+            if (isSpecialItem(item, backPackItemName) && item.getType() == backpackItemMat) {
                 itel.remove();
                 break;
             }
@@ -93,7 +94,7 @@ public class Backpacker extends AbilityListener implements Disableable {
     }
 
     private void setBackpack(Player p) {
-        ItemStack item = new ItemStack(backpackItem);
+        ItemStack item = new ItemStack(backpackItemMat);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(backPackItemName);
         List<String> lore = new ArrayList<String>();

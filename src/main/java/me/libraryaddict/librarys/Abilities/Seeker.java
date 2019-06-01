@@ -19,10 +19,11 @@ public class Seeker extends AbilityListener implements Disableable {
     public int cooldown = 120;
     private String cooldownMessage = ChatColor.BLUE + "The ghost eye will be usable in %s seconds!";
     public boolean doCircle = true;
-    public int seekerItemId = Material.EYE_OF_ENDER.getId();
+    public String seekerItem = Material.ENDER_EYE.name();
+    private Material seekerItemMat = Material.matchMaterial(seekerItem);
     public String seekerItemName = ChatColor.WHITE + "Ghost Eye";
-    private List<Material> transparent = Arrays.asList(new Material[] { Material.STONE, Material.LEAVES, Material.GRASS,
-            Material.DIRT, Material.LOG, Material.SAND, Material.SANDSTONE, Material.ICE, Material.QUARTZ_BLOCK, Material.GRAVEL,
+    private List<Material> transparent = Arrays.asList(new Material[] { Material.STONE, Material.LEGACY_LEAVES, Material.GRASS,
+            Material.DIRT, Material.LEGACY_LOG, Material.SAND, Material.SANDSTONE, Material.ICE, Material.QUARTZ_BLOCK, Material.GRAVEL,
             Material.COBBLESTONE, Material.OBSIDIAN, Material.BEDROCK });
     private String usedSeekerEye = ChatColor.BLUE
             + "You body slam the ghost eye into your socket. Not gonna recover from that for a few minutes..";
@@ -31,7 +32,7 @@ public class Seeker extends AbilityListener implements Disableable {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        if (isSpecialItem(item, seekerItemName) && item.getTypeId() == seekerItemId && hasAbility(event.getPlayer())) {
+        if (isSpecialItem(item, seekerItemName) && item.getType() == seekerItemMat && hasAbility(event.getPlayer())) {
             event.setCancelled(true);
             if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
                 return;

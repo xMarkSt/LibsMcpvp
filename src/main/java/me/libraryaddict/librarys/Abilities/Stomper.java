@@ -48,10 +48,10 @@ public class Stomper extends AbilityListener implements Disableable {
                             if (b.getType() == Material.AIR || b.isLiquid() || b.getLocation().distance(center) > area
                                     || b.getState() instanceof InventoryHolder)
                                 continue;
-                            int id = b.getTypeId();
+                            Material type = b.getType();
                             int data = b.getData();
-                            b.setTypeIdAndData(0, (byte) 0, false);
-                            FallingBlock falling = b.getWorld().spawnFallingBlock(b.getLocation(), id, (byte) data);
+                            b.setType(Material.AIR, false);
+                            FallingBlock falling = b.getWorld().spawnFallingBlock(b.getLocation(), type, (byte) data);
                             falling.setVelocity(new Vector(0, 0.2, 0));
                             falling.setDropItem(false);
                         }

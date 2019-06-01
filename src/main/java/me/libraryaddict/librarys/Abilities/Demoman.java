@@ -20,7 +20,7 @@ public class Demoman extends AbilityListener implements Disableable {
         if (event.isCancelled())
             return;
         Block b = event.getClickedBlock();
-        if (event.getAction() == Action.PHYSICAL && b != null && b.hasMetadata("Placer") && b.getType() == Material.STONE_PLATE
+        if (event.getAction() == Action.PHYSICAL && b != null && b.hasMetadata("Placer") && b.getType() == Material.LEGACY_STONE_PLATE
                 && b.getRelative(BlockFace.DOWN).getType() == Material.GRAVEL) {
             b.removeMetadata("Placer", HungergamesApi.getHungergames());
             b.setType(Material.AIR);
@@ -30,7 +30,7 @@ public class Demoman extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
-        if (event.getBlock().getType() == Material.STONE_PLATE && hasAbility(event.getPlayer())) {
+        if (event.getBlock().getType() == Material.LEGACY_STONE_PLATE && hasAbility(event.getPlayer())) {
             event.getBlock().removeMetadata("Placer", HungergamesApi.getHungergames());
             event.getBlock().setMetadata("Placer",
                     new FixedMetadataValue(HungergamesApi.getHungergames(), event.getPlayer().getName()));

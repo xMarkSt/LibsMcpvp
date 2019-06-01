@@ -25,9 +25,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class Crafter extends AbilityListener implements Disableable {
 
-    public int craftingStarItemId = Material.NETHER_STAR.getId();
+    public String craftingStarItem = Material.NETHER_STAR.name();
+    private Material craftingStarItemMat = Material.matchMaterial(craftingStarItem);
     public String craftingStarItemName = ChatColor.WHITE + "Crafting Star";
-    public int furnacePowderItemId = Material.BLAZE_POWDER.getId();
+    public String furnacePowderItem = Material.BLAZE_POWDER.name();
+    private Material furnacePowderItemMat = Material.matchMaterial(furnacePowderItem);
     public String furnacePowderItemName = ChatColor.WHITE + "Furnace Powder";
     private transient Map<ItemStack, FakeFurnace> furnaces = new HashMap<ItemStack, FakeFurnace>();
 
@@ -45,9 +47,9 @@ public class Crafter extends AbilityListener implements Disableable {
         if ((event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)
                 && hasAbility(event.getPlayer())) {
             Player p = event.getPlayer();
-            if (isSpecialItem(item, craftingStarItemName) && craftingStarItemId == item.getTypeId()) {
+            if (isSpecialItem(item, craftingStarItemName) && craftingStarItemMat == item.getType()) {
                 p.openWorkbench(null, true);
-            } else if (isSpecialItem(item, furnacePowderItemName) && furnacePowderItemId == item.getTypeId()) {
+            } else if (isSpecialItem(item, furnacePowderItemName) && furnacePowderItemMat == item.getType()) {
                 if (!furnaces.containsKey(item)) {
                     furnaces.put(item, NMS.createFakeFurnace());
                 }

@@ -31,9 +31,9 @@ public class Spiderman extends AbilityListener implements Disableable {
     public int maxBallsThrown = 3;
 
     private boolean isWeb(Location loc) {
-        if (loc.getBlock().getType() == Material.WEB)
+        if (loc.getBlock().getType() == Material.LEGACY_WEB)
             return true;
-        return loc.clone().add(0, 1, 0).getBlock().getType() == Material.WEB;
+        return loc.clone().add(0, 1, 0).getBlock().getType() == Material.LEGACY_WEB;
     }
 
     @EventHandler
@@ -56,7 +56,7 @@ public class Spiderman extends AbilityListener implements Disableable {
                     for (int zz = 0; zz < 2; zz++) {
                         Block b = loc.clone().add(x + xx, y, z + zz).getBlock();
                         if (b.getType() == Material.AIR)
-                            b.setType(Material.WEB);
+                            b.setType(Material.LEGACY_WEB);
                     }
 
             event.getEntity().remove();
@@ -83,7 +83,7 @@ public class Spiderman extends AbilityListener implements Disableable {
                         p.updateInventory();
                         p.sendMessage(String.format(cooldownMessage,
                                 (((cooldowns.get(0) - System.currentTimeMillis()) / 1000) + 1)));
-                        HungergamesApi.getKitManager().addItem(p, new ItemStack(Material.SNOW_BALL));
+                        HungergamesApi.getKitManager().addItem(p, new ItemStack(Material.LEGACY_SNOW_BALL));
                         return;
                     }
                     cooldowns.remove(0);

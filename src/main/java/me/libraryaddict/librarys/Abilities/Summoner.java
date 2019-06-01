@@ -21,7 +21,7 @@ public class Summoner extends AbilityListener implements Disableable {
         if (damager instanceof Egg && ((Egg) damager).getShooter() instanceof Player && entity instanceof Creature
                 && hasAbility((Player) ((Egg) damager).getShooter())) {
             entity.getWorld().dropItemNaturally(entity.getLocation().clone().add(0, 0.5, 0),
-                    new ItemStack(Material.MONSTER_EGG, 1, entity.getType().getTypeId()));
+                    new ItemStack(Material.LEGACY_MONSTER_EGG, 1, entity.getType().getTypeId()));
             entity.remove();
             damager.remove();
             event.setCancelled(true);
