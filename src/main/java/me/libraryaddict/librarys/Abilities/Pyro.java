@@ -16,7 +16,7 @@ public class Pyro extends AbilityListener implements Disableable {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        if (event.getAction() == Action.RIGHT_CLICK_AIR && item != null && item.getType() == Material.LEGACY_FIREBALL
+        if (event.getAction() == Action.RIGHT_CLICK_AIR && item != null && item.getType() == Material.FIRE_CHARGE
                 && hasAbility(event.getPlayer())) {
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() == 0)
