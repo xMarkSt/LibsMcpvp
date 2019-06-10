@@ -54,10 +54,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>LibsHungergames</groupId>
+            <groupId>com.github.xMarkSt</groupId>
             <artifactId>LibsHungergames</artifactId>
-            <version>5.7.2</version>
-            <scope>provided</scope>
+            <version>b04c11893c8470df88b0ad6052c04178771a6866</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -67,6 +66,10 @@
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
         <repository>
             <id>techcable-repo</id>
             <url>https://repo.techcable.net/content/groups/public/</url>

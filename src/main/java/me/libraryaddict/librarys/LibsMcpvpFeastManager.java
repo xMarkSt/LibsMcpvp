@@ -19,7 +19,7 @@ public class LibsMcpvpFeastManager extends LibsFeastManager {
                 Block block = loc.clone().add(x, 0, z).getBlock();
                 Block b = block;
                 if (x == 0 && z == 0)
-                    gen.setBlockFast(b, Material.LEGACY_ENCHANTMENT_TABLE.getId(), (short) 0);
+                    gen.setBlockFast(b, Material.ENCHANTING_TABLE.createBlockData());
                 else if (Math.abs(x + z) % 2 == 0) {
                     gen.addToProcessedBlocks(block);
                     block.setType(Material.CHEST, false);
