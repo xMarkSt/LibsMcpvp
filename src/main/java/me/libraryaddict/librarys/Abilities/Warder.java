@@ -51,7 +51,7 @@ public class Warder extends AbilityListener implements Disableable {
         ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
         ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
         ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
-        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.LEGACY_WALL_SIGN);
         ignoreBlockTypes.add(Material.FIRE);
         ignoreBlockTypes.add(Material.TORCH);
         ignoreBlockTypes.add(Material.REDSTONE_WIRE);
