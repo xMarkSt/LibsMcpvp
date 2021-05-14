@@ -39,13 +39,14 @@ public class Flash extends AbilityListener implements Disableable {
         ignoreBlockTypes.add(Material.WATER);
         ignoreBlockTypes.add(Material.LAVA);
         ignoreBlockTypes.add(Material.SNOW);
-        ignoreBlockTypes.add(Material.LEGACY_LONG_GRASS);
+        ignoreBlockTypes.add(Material.TALL_GRASS);
+        ignoreBlockTypes.add(Material.SEAGRASS);
         ignoreBlockTypes.add(Material.RED_MUSHROOM);
-        ignoreBlockTypes.add(Material.LEGACY_RED_ROSE);
-        ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
+        ignoreBlockTypes.add(Material.DANDELION);
+        ignoreBlockTypes.add(Material.POPPY);
         ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
         ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
-        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.LEGACY_WALL_SIGN);
         ignoreBlockTypes.add(Material.FIRE);
         ignoreBlockTypes.add(Material.TORCH);
         ignoreBlockTypes.add(Material.REDSTONE_WIRE);
