@@ -506,7 +506,7 @@ Kits:
     Ability:
       - Spiderman
   Stomper:
-    Description: 'The GroundPound kit is for those who have fond memories of doing cannon balls at the local public pool. You take a stable 2 hearts of fall damage and if you land on someone else, they are given the fall damage you would normally have taken. The damage they take is based on how close they are to you'
+    Description: 'The Stomper kit is for those who have fond memories of doing cannon balls at the local public pool. You take a stable 2 hearts of fall damage and if you land on someone else, they are given the fall damage you would normally have taken. The damage they take is based on how close they are to you'
     Free: true
     Price: 0
     Icon: ANVIL 0 1
