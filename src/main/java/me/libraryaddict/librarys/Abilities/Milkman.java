@@ -64,7 +64,7 @@ public class Milkman extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) {
-        ItemStack item = event.getPlayer().getItemInHand();
+        ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if (isSpecialItem(item, milkbucketName) && item.getType() == Material.BUCKET && hasAbility(event.getPlayer())) {
             if (event.getRightClicked() instanceof Cow) {
                 event.setCancelled(true);

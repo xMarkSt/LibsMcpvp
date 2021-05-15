@@ -52,8 +52,8 @@ public class Tarzan extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        if (hasAbility(event.getPlayer()) && event.getPlayer().getItemInHand() != null
-                && event.getPlayer().getItemInHand().getType() == Material.VINE) {
+        if (hasAbility(event.getPlayer()) && event.getPlayer().getInventory().getItemInMainHand() != null
+                && event.getPlayer().getInventory().getItemInMainHand().getType() == Material.VINE) {
             Location loc = event.getPlayer().getLocation();
             for (int x = -scanSidewaysRadius; x < scanSidewaysRadius; x++) {
                 for (int z = -scanSidewaysRadius; z < scanSidewaysRadius; z++) {

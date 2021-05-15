@@ -97,7 +97,7 @@ public class Santa extends AbilityListener implements Disableable {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        ItemStack item = p.getItemInHand();
+        ItemStack item = p.getInventory().getItemInMainHand();
         Kit kit = kits.getKitByPlayer(p);
         if (kit != null && item != null && event.getAction().name().contains("RIGHT")
                 && isSpecialItem(item, String.format(presentName, kit.getName()))) {

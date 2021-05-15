@@ -106,7 +106,7 @@ public class Wisp extends AbilityListener implements Disableable {
                 Ocelot villager = spawnVillager(p.getLocation());
                 wisp.villagers.add(villager);
                 PlayerDisguise player = new PlayerDisguise(p.getName());
-                player.getWatcher().setItemInHand(p.getItemInHand());
+                player.getWatcher().setItemInHand(p.getInventory().getItemInMainHand());
                 player.getWatcher().setArmor(p.getInventory().getArmorContents());
                 DisguiseAPI.disguiseToAll(villager, player);
                 villager.setRemoveWhenFarAway(true);

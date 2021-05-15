@@ -21,7 +21,7 @@ public class Doctor extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onRightClick(PlayerInteractEntityEvent event) {
-        ItemStack item = event.getPlayer().getItemInHand();
+        ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if (event.getRightClicked() instanceof LivingEntity && isSpecialItem(item, pairOfForcepsItemName)
                 && pairOfForcepsItemMat == item.getType() && hasAbility(event.getPlayer())) {
             LivingEntity lEntity = (LivingEntity) event.getRightClicked();

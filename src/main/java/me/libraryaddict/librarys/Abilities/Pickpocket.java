@@ -85,7 +85,7 @@ public class Pickpocket extends AbilityListener implements Disableable {
     // He can pick when taken is there.
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent event) {
-        ItemStack item = event.getPlayer().getItemInHand();
+        ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if (event.getRightClicked() instanceof Player && isSpecialItem(item, thievingStickItemName)
                 && item.getType() == thievingStickItemMat && hasAbility(event.getPlayer())) {
             Pick pick = new Pick();

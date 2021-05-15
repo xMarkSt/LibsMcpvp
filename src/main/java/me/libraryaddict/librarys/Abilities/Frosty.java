@@ -77,7 +77,7 @@ public class Frosty extends AbilityListener implements Disableable {
     public void onBreak(BlockBreakEvent event) {
         if (event.getBlock().getType() == Material.SNOW
                 && hasAbility(event.getPlayer())
-                && (event.getPlayer().getItemInHand() == null || !event.getPlayer().getItemInHand().getType().name()
+                && (event.getPlayer().getInventory().getItemInMainHand() == null || !event.getPlayer().getItemInHand().getType().name()
                         .contains("SPADE"))) {
             event.getBlock()
                     .getWorld()

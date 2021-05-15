@@ -13,7 +13,7 @@ public class Viking extends AbilityListener implements Disableable {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player && hasAbility((Player) event.getDamager())) {
-            ItemStack item = ((Player) event.getDamager()).getItemInHand();
+            ItemStack item = ((Player) event.getDamager()).getInventory().getItemInMainHand();
             if (item != null && item.getType().name().contains("AXE")) {
                 event.setDamage(event.getDamage() + 3);
             }

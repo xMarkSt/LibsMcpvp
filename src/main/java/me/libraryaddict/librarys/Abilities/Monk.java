@@ -26,7 +26,7 @@ public class Monk extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onRightClick(PlayerInteractEntityEvent event) {
-        ItemStack item = event.getPlayer().getItemInHand();
+        ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if (event.getRightClicked() instanceof Player && isSpecialItem(item, monkItemName) && item.getType() == monkItemMat
                 && hasAbility(event.getPlayer())) {
             long lastUsed = 0;
@@ -39,7 +39,7 @@ public class Monk extends AbilityListener implements Disableable {
             } else {
                 PlayerInventory inv = ((Player) event.getRightClicked()).getInventory();
                 int slot = new Random().nextInt(sendThroughInventory ? 36 : 9);
-                ItemStack replaced = inv.getItemInHand();
+                ItemStack replaced = inv.getItemInMainHand();
                 if (replaced == null)
                     replaced = new ItemStack(Material.AIR);
                 ItemStack replacer = inv.getItem(slot);

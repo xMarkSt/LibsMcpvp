@@ -18,7 +18,7 @@ public class Reaper extends AbilityListener implements Disableable {
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.isCancelled())
             if (event.getDamager() instanceof Player
-                    && isSpecialItem(((Player) event.getDamager()).getItemInHand(), reaperItemName)
+                    && isSpecialItem(((Player) event.getDamager()).getInventory().getItemInMainHand(), reaperItemName)
                     && hasAbility((Player) event.getDamager())) {
                 if (event.getEntity() instanceof LivingEntity) {
                     ((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER,

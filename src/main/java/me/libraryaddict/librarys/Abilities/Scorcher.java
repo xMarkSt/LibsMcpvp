@@ -24,7 +24,7 @@ public class Scorcher extends AbilityListener implements Disableable {
             return;
         Player p = event.getPlayer();
         ItemStack boots = p.getInventory().getBoots();
-        if (isSpecialItem(boots, bootsName) && isSpecialItem(p.getItemInHand(), blazeName) && hasAbility(p)) {
+        if (isSpecialItem(boots, bootsName) && isSpecialItem(p.getInventory().getItemInMainHand(), blazeName) && hasAbility(p)) {
             final Block b = event.getFrom().getBlock();
             Material type = b.getType();
             if ((type == Material.AIR || type == Material.SNOW || type == Material.LEGACY_LONG_GRASS)
