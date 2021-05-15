@@ -45,7 +45,7 @@ public class Monk extends AbilityListener implements Disableable {
                 ItemStack replacer = inv.getItem(slot);
                 if (replacer == null)
                     replacer = new ItemStack(Material.AIR);
-                inv.setItemInHand(replacer);
+                inv.setItemInMainHand(replacer);
                 inv.setItem(slot, replaced);
                 monkStaff.put(item, System.currentTimeMillis());
                 event.getPlayer().sendMessage(monkedMessage);

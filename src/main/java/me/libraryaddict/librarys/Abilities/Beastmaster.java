@@ -30,7 +30,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
                     item.setAmount(item.getAmount() - 1);
                 else
                     item = null;
-                p.setItemInHand(item);
+                p.getInventory().setItemInMainHand(item);
             }
         }
     }
@@ -47,7 +47,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
                     item.setAmount(item.getAmount() - 1);
                 else
                     item = null;
-                p.setItemInHand(item);
+                p.getInventory().setItemInMainHand(item);
             }
         }
     }

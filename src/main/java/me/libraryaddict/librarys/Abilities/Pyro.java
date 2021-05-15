@@ -20,7 +20,7 @@ public class Pyro extends AbilityListener implements Disableable {
                 && hasAbility(event.getPlayer())) {
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() == 0)
-                event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+                event.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
             Fireball ball = event.getPlayer().launchProjectile(Fireball.class);
             ball.setIsIncendiary(true);
             ball.setYield(ball.getYield() * fireballExplosiveMultiplier);

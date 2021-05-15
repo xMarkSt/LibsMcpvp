@@ -53,11 +53,11 @@ public class Milkman extends AbilityListener implements Disableable {
                 p.sendMessage(milkBucketRanOut);
                 cooldown.remove(item);
                 event.setCancelled(true);
-                p.setItemInHand(new ItemStack(Material.BUCKET, item.getAmount(), item.getDurability()));
+                p.getInventory().setItemInMainHand(new ItemStack(Material.BUCKET, item.getAmount(), item.getDurability()));
             } else {
                 p.sendMessage(String.format(usedMilk, maxUses - cooldown.get(item)));
                 event.setCancelled(true);
-                p.setItemInHand(clone(item, Material.BUCKET));
+                p.getInventory().setItemInMainHand(clone(item, Material.BUCKET));
             }
         }
     }
@@ -71,7 +71,7 @@ public class Milkman extends AbilityListener implements Disableable {
                 ItemStack cloned = item.clone();
                 item.setAmount(item.getAmount() - 1);
                 if (item.getAmount() == 0)
-                    event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+                    event.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 kits.addItem(event.getPlayer(), clone(cloned, Material.MILK_BUCKET));
                 event.getPlayer().updateInventory();
             }

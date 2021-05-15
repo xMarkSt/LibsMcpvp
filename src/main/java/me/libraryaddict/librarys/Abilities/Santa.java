@@ -104,7 +104,7 @@ public class Santa extends AbilityListener implements Disableable {
             event.setCancelled(true);
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() == 0)
-                p.setItemInHand(new ItemStack(Material.AIR));
+                p.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
             if (displayMessageOnOpen)
                 p.sendMessage(messageOnPresentOpen);
             for (ItemStack i : kit.getItems()) {

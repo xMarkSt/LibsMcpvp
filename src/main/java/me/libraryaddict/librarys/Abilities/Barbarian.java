@@ -27,7 +27,7 @@ public class Barbarian extends AbilityListener {
                     int level = (kills.get(item) / killsPerLevel) - 1;
                     if (level < weaponTypeUpgrades.length) {
                         item.setType(Material.getMaterial(weaponTypeUpgrades[level]));
-                        event.getKillerPlayer().getPlayer().setItemInHand(item);
+                        event.getKillerPlayer().getPlayer().getInventory().setItemInMainHand(item);
                     }
                 }
             }

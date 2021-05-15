@@ -41,7 +41,7 @@ public class CookieMonster extends AbilityListener implements Disableable {
                     }
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
                     if (event.getItem().getAmount() == 0)
-                        p.setItemInHand(new ItemStack(Material.AIR));
+                        p.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                     cookieExpires.put(p, System.currentTimeMillis() + delayInMillisecondsBetweenCookies);
                 }
             }
