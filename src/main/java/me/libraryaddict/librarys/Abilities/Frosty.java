@@ -100,7 +100,7 @@ public class Frosty extends AbilityListener implements Disableable {
     public void onMove(PlayerMoveEvent event) {
         if (hasAbility(event.getPlayer()))
             if (event.getPlayer().getLocation().getBlock().getType() == Material.SNOW)
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, potionMultiplier), true);
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, potionMultiplier));
     }
 
     @EventHandler

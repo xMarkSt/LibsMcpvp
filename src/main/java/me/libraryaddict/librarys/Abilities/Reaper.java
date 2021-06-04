@@ -22,7 +22,7 @@ public class Reaper extends AbilityListener implements Disableable {
                     && hasAbility((Player) event.getDamager())) {
                 if (event.getEntity() instanceof LivingEntity) {
                     ((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER,
-                            reaperEffectLastsSeconds * 20, 0), true);
+                            reaperEffectLastsSeconds * 20, 0));
                 }
             }
     }

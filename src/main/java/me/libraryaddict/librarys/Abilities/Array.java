@@ -106,7 +106,7 @@ public class Array extends AbilityListener implements Disableable {
             for (Gamer gamer : pm.getAliveGamers()) {
                 Player p = gamer.getPlayer();
                 if (p.getLocation().distance(heal.blocks[0].getLocation()) < 6)
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 40, 1), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 40, 1));
             }
         }
     }

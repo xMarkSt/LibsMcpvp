@@ -37,7 +37,7 @@ public class CookieMonster extends AbilityListener implements Disableable {
                     } else if (p.getFoodLevel() < 20) {
                         p.setFoodLevel(p.getFoodLevel() + 1);
                     } else {
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1), true);
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1));
                     }
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
                     if (event.getItem().getAmount() == 0)

@@ -94,7 +94,7 @@ public class Flash extends AbilityListener implements Disableable {
                             NMS.showPortalEffect(pLoc);
                             NMS.showPortalEffect(loc);
                             if (giveWeakness)
-                                p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, (int) ((dist / 2) * 20), 1), true);
+                                p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, (int) ((dist / 2) * 20), 1));
                             pLoc.getWorld().strikeLightningEffect(loc);
                             return;
                         }

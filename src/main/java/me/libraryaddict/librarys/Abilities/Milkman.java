@@ -44,7 +44,7 @@ public class Milkman extends AbilityListener implements Disableable {
                 String[] effect = string.split(" ");
                 PotionEffect potionEffect = new PotionEffect(PotionEffectType.getByName(effect[0].toUpperCase()),
                         Integer.parseInt(effect[1]), Integer.parseInt(effect[2]));
-                p.addPotionEffect(potionEffect, true);
+                p.addPotionEffect(potionEffect);
             }
             if (!cooldown.containsKey(item))
                 cooldown.put(item, 0);
