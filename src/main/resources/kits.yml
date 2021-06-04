@@ -383,6 +383,13 @@ Kits:
     Icon: SKELETON_SKULL 0 1
     Ability:
       - Necro
+  NightOwl:
+    Description: 'You will be able to see way better in darkness! Ideal for those dark nights and dark caves.'
+    Free: true
+    Price: 0
+    Icon: POTION 8198 1
+    Ability:
+      - NightOwl
   Phantom:
     Description: 'You remember that old legend about the man who could fly right? Well it has a element of truth in it. For using this kit. You can fly! Beware however! After 5 seconds of activating the flight. It wears off! Regardless if you are flyinh!'
     Free: true
