@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -153,7 +154,7 @@ public class Gambler extends AbilityListener implements Disableable {
             Player p = event.getPlayer();
             WonItem wonItem = getRandom();
             if (wonItem.isHealth())
-                p.setHealth(p.getMaxHealth());
+                p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             else if (wonItem.isHunger()) {
                 p.setFoodLevel(20);
                 p.setSaturation(5.0F);
