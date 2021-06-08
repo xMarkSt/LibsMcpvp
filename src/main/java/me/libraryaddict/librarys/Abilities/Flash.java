@@ -25,10 +25,8 @@ public class Flash extends AbilityListener implements Disableable {
     public boolean addMoreCooldownForLargeDistances = true;
     public String cooldownMessage = ChatColor.BLUE + "You can use this again in %s seconds!";
     public String flashItemName = ChatColor.WHITE + "Flash";
-    public String flashOffItem = Material.TORCH.name();
-    private Material flashOffItemMat = Material.matchMaterial(flashOffItem);
-    public String flashOnItem = Material.LEGACY_REDSTONE_TORCH_ON.name();
-    private Material flashOnItemMat = Material.matchMaterial(flashOnItem);
+    private Material flashOffItemMat = Material.TORCH;
+    private Material flashOnItemMat = Material.REDSTONE_TORCH;
     public boolean giveWeakness = true;
     private HashSet<Material> ignoreBlockTypes = new HashSet<>();
     public int maxTeleportDistance = 200;
@@ -91,8 +89,8 @@ public class Flash extends AbilityListener implements Disableable {
                             p.teleport(loc);
                             pLoc.getWorld().playSound(pLoc, Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1.2F);
                             pLoc.getWorld().playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1.2F);
-                            NMS.showPortalEffect(pLoc);
-                            NMS.showPortalEffect(loc);
+                            pLoc.getWorld().spawnParticle(Particle.PORTAL, pLoc, 32);
+                            pLoc.getWorld().spawnParticle(Particle.PORTAL, loc, 32);
                             if (giveWeakness)
                                 p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, (int) ((dist / 2) * 20), 1));
                             pLoc.getWorld().strikeLightningEffect(loc);

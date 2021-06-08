@@ -160,19 +160,4 @@ public final class NMS {
 
         return true;
     }
-
-    public static void showPortalEffect(Location l) {
-        ((CraftWorld) l.getWorld()).getHandle().a( // showParticle (http://wiki.vg/index.php?title=Protocol&oldid=7368#Particle)
-                EnumParticle.PORTAL,
-                l.getX(),
-                l.getY(),
-                l.getZ(),
-                // offsets (this is added to the X position after being multiplied by random.nextGaussian())
-                0,
-                0,
-                0, // Particle 'data'
-                1, // Particles to create
-                32 // Apparently this is how many particles an enderpearl creates,
-        );
-    }
 }
