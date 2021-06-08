@@ -18,7 +18,7 @@ public class Barbarian extends AbilityListener {
     @EventHandler
     public void onKilled(PlayerKilledEvent event) {
         if (event.getKillerPlayer() != null) {
-            ItemStack item = event.getKillerPlayer().getPlayer().getItemInHand();
+            ItemStack item = event.getKillerPlayer().getPlayer().getInventory().getItemInMainHand();
             if (isSpecialItem(item, swordName) && hasAbility(event.getKillerPlayer().getPlayer())) {
                 if (!kills.containsKey(item))
                     kills.put(item, 0);
@@ -27,7 +27,7 @@ public class Barbarian extends AbilityListener {
                     int level = (kills.get(item) / killsPerLevel) - 1;
                     if (level < weaponTypeUpgrades.length) {
                         item.setType(Material.getMaterial(weaponTypeUpgrades[level]));
-                        event.getKillerPlayer().getPlayer().setItemInHand(item);
+                        event.getKillerPlayer().getPlayer().getInventory().setItemInMainHand(item);
                     }
                 }
             }

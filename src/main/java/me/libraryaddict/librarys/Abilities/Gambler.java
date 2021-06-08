@@ -170,7 +170,7 @@ public class Gambler extends AbilityListener implements Disableable {
                             effect = new PotionEffect(e.getType(), e.getDuration() + effect.getDuration(), effect.getAmplifier());
                         }
                     }
-                p.addPotionEffect(effect, true);
+                p.addPotionEffect(effect);
             }
             p.sendMessage(String.format(whatYouWon, wonItem.getMessage()));
         }

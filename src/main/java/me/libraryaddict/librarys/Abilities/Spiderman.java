@@ -40,7 +40,7 @@ public class Spiderman extends AbilityListener implements Disableable {
     public void onMove(PlayerMoveEvent event) {
         if (hasAbility(event.getPlayer())) {
             if (isWeb(event.getFrom()) || isWeb(event.getTo())) {
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 1), true);
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 1));
             }
         }
     }

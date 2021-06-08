@@ -26,7 +26,7 @@ public class Cannibal extends AbilityListener implements Disableable {
             LivingEntity entity = (LivingEntity) event.getEntity();
             Player p = (Player) event.getDamager();
             if (hasAbility(p) && new Random().nextInt(chance) == 0) {
-                entity.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, potionLength * 20, multiplier), true);
+                entity.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, potionLength * 20, multiplier));
                 int hunger = p.getFoodLevel();
                 hunger += addHunger;
                 if (hunger > 20)

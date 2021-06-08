@@ -51,7 +51,7 @@ public class Warder extends AbilityListener implements Disableable {
         ignoreBlockTypes.add(Material.LEGACY_YELLOW_FLOWER);
         ignoreBlockTypes.add(Material.BROWN_MUSHROOM);
         ignoreBlockTypes.add(Material.LEGACY_SIGN_POST);
-        ignoreBlockTypes.add(Material.WALL_SIGN);
+        ignoreBlockTypes.add(Material.LEGACY_WALL_SIGN);
         ignoreBlockTypes.add(Material.FIRE);
         ignoreBlockTypes.add(Material.TORCH);
         ignoreBlockTypes.add(Material.REDSTONE_WIRE);
@@ -121,7 +121,7 @@ public class Warder extends AbilityListener implements Disableable {
                         String[] effect = string.split(" ");
                         PotionEffect potionEffect = new PotionEffect(PotionEffectType.getByName(effect[0].toUpperCase()),
                                 Integer.parseInt(effect[1]), Integer.parseInt(effect[2]));
-                        ((Player) event.getEntity()).addPotionEffect(potionEffect, true);
+                        ((Player) event.getEntity()).addPotionEffect(potionEffect);
                     }
                     break;
                 }

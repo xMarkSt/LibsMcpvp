@@ -63,7 +63,7 @@ public class Worm extends AbilityListener implements Disableable {
             boolean drop = (this.gainsHealthFromSmashingDirt && p.getHealth() < p.getMaxHealth())
                     || (this.gainsHungerFromSmashingDirt && p.getFoodLevel() < 20);
             if (onSmash(p, event.getBlock())) {
-                event.getBlock().getWorld().playEffect(event.getBlock().getLocation(), Effect.STEP_SOUND, Material.DIRT.getId());
+                event.getBlock().getWorld().playEffect(event.getBlock().getLocation(), Effect.STEP_SOUND, Material.DIRT);
                 event.getBlock().setType(Material.AIR);
                 if (!drop)
                     event.getBlock().getWorld()

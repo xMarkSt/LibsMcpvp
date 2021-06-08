@@ -44,7 +44,7 @@ public class Madman extends AbilityListener implements Disableable {
                             amp++;
                         }
                         currentTicks += (20 + (nearby.size() * rateOfMadness));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, currentTicks, amp), true);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, currentTicks, amp));
                     }
                 }
             }

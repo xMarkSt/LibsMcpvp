@@ -383,6 +383,13 @@ Kits:
     Icon: SKELETON_SKULL 0 1
     Ability:
       - Necro
+  NightOwl:
+    Description: 'You will be able to see way better in darkness! Ideal for those dark nights and dark caves.'
+    Free: true
+    Price: 0
+    Icon: POTION 8198 1
+    Ability:
+      - NightOwl
   Phantom:
     Description: 'You remember that old legend about the man who could fly right? Well it has a element of truth in it. For using this kit. You can fly! Beware however! After 5 seconds of activating the flight. It wears off! Regardless if you are flyinh!'
     Free: true
@@ -506,7 +513,7 @@ Kits:
     Ability:
       - Spiderman
   Stomper:
-    Description: 'The GroundPound kit is for those who have fond memories of doing cannon balls at the local public pool. You take a stable 2 hearts of fall damage and if you land on someone else, they are given the fall damage you would normally have taken. The damage they take is based on how close they are to you'
+    Description: 'The Stomper kit is for those who have fond memories of doing cannon balls at the local public pool. You take a stable 2 hearts of fall damage and if you land on someone else, they are given the fall damage you would normally have taken. The damage they take is based on how close they are to you'
     Free: true
     Price: 0
     Icon: ANVIL 0 1

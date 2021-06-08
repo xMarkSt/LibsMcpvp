@@ -87,7 +87,7 @@ public class Spectre extends AbilityListener implements Disableable {
                     cooldown.put(item, cooldownTime + currentTime);
                     invis.put(p, currentTime + invisLength);
                     if (addInvisToSpectre)
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, invisLength * 20, 0), true);
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, invisLength * 20, 0));
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.hidePlayer(p);
                     }

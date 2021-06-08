@@ -27,8 +27,8 @@ public class JackHammer extends AbilityListener implements Disableable {
 
     @EventHandler
     public void onBreak(final BlockBreakEvent event) {
-        if (isSpecialItem(event.getPlayer().getItemInHand(), hammerName) && hasAbility(event.getPlayer())) {
-            ItemStack item = event.getPlayer().getItemInHand();
+        if (isSpecialItem(event.getPlayer().getInventory().getItemInMainHand(), hammerName) && hasAbility(event.getPlayer())) {
+            ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
             Hungergames hg = HungergamesApi.getHungergames();
             if (cooldownTime.containsKey(item) && cooldownTime.get(item) < hg.currentTime) {
                 event.getPlayer().sendMessage(String.format(cooldownMessage, cooldownTime.get(item)));

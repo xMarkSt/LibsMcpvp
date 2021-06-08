@@ -44,7 +44,7 @@ public class Milkman extends AbilityListener implements Disableable {
                 String[] effect = string.split(" ");
                 PotionEffect potionEffect = new PotionEffect(PotionEffectType.getByName(effect[0].toUpperCase()),
                         Integer.parseInt(effect[1]), Integer.parseInt(effect[2]));
-                p.addPotionEffect(potionEffect, true);
+                p.addPotionEffect(potionEffect);
             }
             if (!cooldown.containsKey(item))
                 cooldown.put(item, 0);
@@ -53,25 +53,25 @@ public class Milkman extends AbilityListener implements Disableable {
                 p.sendMessage(milkBucketRanOut);
                 cooldown.remove(item);
                 event.setCancelled(true);
-                p.setItemInHand(new ItemStack(Material.BUCKET, item.getAmount(), item.getDurability()));
+                p.getInventory().setItemInMainHand(new ItemStack(Material.BUCKET, item.getAmount(), item.getDurability()));
             } else {
                 p.sendMessage(String.format(usedMilk, maxUses - cooldown.get(item)));
                 event.setCancelled(true);
-                p.setItemInHand(clone(item, Material.BUCKET));
+                p.getInventory().setItemInMainHand(clone(item, Material.BUCKET));
             }
         }
     }
 
     @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) {
-        ItemStack item = event.getPlayer().getItemInHand();
+        ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         if (isSpecialItem(item, milkbucketName) && item.getType() == Material.BUCKET && hasAbility(event.getPlayer())) {
             if (event.getRightClicked() instanceof Cow) {
                 event.setCancelled(true);
                 ItemStack cloned = item.clone();
                 item.setAmount(item.getAmount() - 1);
                 if (item.getAmount() == 0)
-                    event.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+                    event.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 kits.addItem(event.getPlayer(), clone(cloned, Material.MILK_BUCKET));
                 event.getPlayer().updateInventory();
             }

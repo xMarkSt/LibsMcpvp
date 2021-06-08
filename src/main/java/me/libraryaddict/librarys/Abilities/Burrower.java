@@ -63,7 +63,7 @@ public class Burrower extends AbilityListener implements Disableable {
                 }
                 item.setAmount(item.getAmount() - 1);
                 if (item.getAmount() == 0)
-                    p.setItemInHand(new ItemStack(Material.AIR));
+                    p.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 Location loc = p.getLocation().clone().add(x, 0, z);
                 if (teleportHeightRelativeToCurrentPos)
                     loc.setY(loc.getY() - teleportToY);

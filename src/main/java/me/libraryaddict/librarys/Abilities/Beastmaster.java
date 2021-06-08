@@ -18,7 +18,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        ItemStack item = p.getItemInHand();
+        ItemStack item = p.getInventory().getItemInMainHand();
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && item != null && item.getType() == Material.LEGACY_MONSTER_EGG) {
             if (hasAbility(event.getPlayer()) && item.getDurability() == (byte) 95) {
                 event.setCancelled(true);
@@ -30,7 +30,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
                     item.setAmount(item.getAmount() - 1);
                 else
                     item = null;
-                p.setItemInHand(item);
+                p.getInventory().setItemInMainHand(item);
             }
         }
     }
@@ -38,7 +38,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
     @EventHandler
     public void onMobInteract(PlayerInteractEntityEvent event) {
         Player p = event.getPlayer();
-        ItemStack item = p.getItemInHand();
+        ItemStack item = p.getInventory().getItemInMainHand();
         if (event.getRightClicked() instanceof Wolf && item != null && item.getType() == Material.BONE) {
             if (hasAbility(event.getPlayer()) && !((Wolf) event.getRightClicked()).isTamed()) {
                 event.setCancelled(true);
@@ -47,7 +47,7 @@ public class Beastmaster extends AbilityListener implements Disableable {
                     item.setAmount(item.getAmount() - 1);
                 else
                     item = null;
-                p.setItemInHand(item);
+                p.getInventory().setItemInMainHand(item);
             }
         }
     }

@@ -115,7 +115,7 @@ public class Analyzer extends AbilityListener implements Disableable {
             public void run() {
                 zero = !zero;
                 for (Player p : getMyPlayers()) {
-                    ItemStack item = p.getItemInHand();
+                    ItemStack item = p.getInventory().getItemInMainHand();
                     if (item == null || item.getType() == Material.AIR)
                         continue;
                     Entity entity = NMS.getEntityInSight(p, rangeToScan);

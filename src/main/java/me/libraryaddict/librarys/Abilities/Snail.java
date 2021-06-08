@@ -25,7 +25,7 @@ public class Snail extends AbilityListener implements Disableable {
             LivingEntity entity = (LivingEntity) event.getEntity();
             Player p = (Player) event.getDamager();
             if (hasAbility(p) && new Random().nextInt(chance) == 1) {
-                entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, length * 20, multiplier), true);
+                entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, length * 20, multiplier));
             }
         }
     }

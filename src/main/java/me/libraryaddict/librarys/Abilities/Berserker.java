@@ -65,7 +65,7 @@ public class Berserker extends AbilityListener implements Disableable {
         boost.extraDamage = damage;
         dmgBuff.put(p, boost);
         if (giveConfusion)
-            p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, berserkerLength * 20, 0), true);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, berserkerLength * 20, 0));
     }
 
 }
