@@ -13,9 +13,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>com.github.xMarkSt</groupId>
             <artifactId>LibsHungergames</artifactId>
-            <version>b04c11893c8470df88b0ad6052c04178771a6866</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
