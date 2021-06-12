@@ -22,12 +22,13 @@ public class Seeker extends AbilityListener implements Disableable {
     public String seekerItem = Material.ENDER_EYE.name();
     private Material seekerItemMat = Material.matchMaterial(seekerItem);
     public String seekerItemName = ChatColor.WHITE + "Ghost Eye";
-    private List<Material> transparent = Arrays.asList(new Material[] { Material.STONE, Material.LEGACY_LEAVES, Material.GRASS,
+    private List<Material> transparent = Arrays.asList(new Material[] { Material.STONE, Material.LEGACY_LEAVES, Material.GRASS_BLOCK,
             Material.DIRT, Material.LEGACY_LOG, Material.SAND, Material.SANDSTONE, Material.ICE, Material.QUARTZ_BLOCK, Material.GRAVEL,
             Material.COBBLESTONE, Material.OBSIDIAN, Material.BEDROCK, Material.DIORITE, Material.GRANITE, Material.ANDESITE });
     private String usedSeekerEye = ChatColor.BLUE
             + "You body slam the ghost eye into your socket. Not gonna recover from that for a few minutes..";
     public int xrayRadius = 10;
+    private String readyMessage = ChatColor.BLUE + "Your ghost eye has been rendered usable again.";
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
