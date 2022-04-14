@@ -359,14 +359,14 @@ Kits:
     Price: 0
     Icon: STONE_PICKAXE 0 1
     Items:
-      - STONE_PICKAXE 0 1 DURABILITY 1 DIG_SPEED 2 Unlootable 1
+      - STONE_PICKAXE 0 1 DURABILITY 1 DIG_SPEED 2 VANISHING_CURSE 1
   Monk:
     Description: 'Right click someone with your blaze rod and their currently held item will switch with a random item in their inventory!'
     Free: true
     Price: 0
     Icon: BLAZE_ROD 0 1
     Items:
-      - BLAZE_ROD 0 1 Name=Monk_Staff Unlootable 1 UniqueItem
+      - BLAZE_ROD 0 1 Name=Monk_Staff VANISHING_CURSE 1 UniqueItem
     Ability:
       - Monk
   Monster:
@@ -396,7 +396,7 @@ Kits:
     Price: 0
     Icon: FEATHER 0 1
     Items:
-      - 'FEATHER 0 1 Name=Condor''s_Feather UniqueItem Unlootable 1'
+      - 'FEATHER 0 1 Name=Condor''s_Feather UniqueItem VANISHING_CURSE'
     Ability:
       - Phantom
   Pickpocket:
@@ -405,7 +405,7 @@ Kits:
     Price: 0
     Icon: BLAZE_ROD 0 1
     Items:
-      - BLAZE_ROD 0 1 Unlootable 1 Name=Thieving_Stick UniqueItem
+      - BLAZE_ROD 0 1 VANISHING_CURSE 1 Name=Thieving_Stick UniqueItem
     Ability:
       - Pickpocket
   Poseidon:
@@ -431,7 +431,7 @@ Kits:
     Price: 0
     Icon: WOODEN_HOE 0 1
     Items:
-      - WOODEN_HOE -1000 1 Name=Death_Scythe Unlootable 1
+      - WOODEN_HOE -1000 1 Name=Death_Scythe VANISHING_CURSE 1
     Ability:
       - Reaper
   Rider:
@@ -440,7 +440,7 @@ Kits:
     Price: 0
     Icon: CARROT_ON_A_STICK 0 1
     Items:
-      - 'CARROT_ON_A_STICK 0 1 Name=Summon:_Mighty_Steed Unlootable 1'
+      - 'CARROT_ON_A_STICK 0 1 Name=Summon:_Mighty_Steed VANISHING_CURSE 1'
     Ability:
       - Rider
   Salvager:
@@ -464,9 +464,9 @@ Kits:
     Free: true
     Price: 0
     Icon: FLINT_AND_STEEL 0 1
-    Boots: LEATHER_BOOTS 0 1 Unlootable 1 Name=Scorchers_Boots Color=255:0:0
+    Boots: LEATHER_BOOTS 0 1 VANISHING_CURSE 1 Name=Scorchers_Boots Color=255:0:0
     Items: 
-      - BLAZE_POWDER 0 1 Unlootable 1 Name=Scorchers_Igniter
+      - BLAZE_POWDER 0 1 VANISHING_CURSE 1 Name=Scorchers_Igniter
     Ability:
       - Scorcher
   Scout:
@@ -484,7 +484,7 @@ Kits:
     Price: 0
     Icon: ENDER_EYE 0 1
     Items:
-      - ENDER_EYE 0 1 Name=Ghost_Eye Unlootable 1 UniqueItem
+      - ENDER_EYE 0 1 Name=Ghost_Eye VANISHING_CURSE 1 UniqueItem
     Ability:
       - Seeker
   Snail:
@@ -500,7 +500,7 @@ Kits:
     Price: 0
     Icon: SUGAR 0 1
     Items:
-      - REDSTONE 0 1 Unlootable 1 Name=Spectre_Dust UniqueItem
+      - REDSTONE 0 1 VANISHING_CURSE 1 Name=Spectre_Dust UniqueItem
     Ability:
       - Spectre
   Spiderman:
@@ -532,9 +532,9 @@ Kits:
     Description: 'Spawn with 10 special snowballs you can throw at someone to switch positions with them! The snowballs have a 10 second cooldown after each one. Great for getting that guy off the tower!'
     Free: true
     Price: 0
-    Icon: SNOWBALL 0 1 Unlootable 1
+    Icon: SNOWBALL 0 1 VANISHING_CURSE 1
     Items:
-      - SNOWBALL 0 10 Unlootable 1 Name=Switcher_Snowball
+      - SNOWBALL 0 10 VANISHING_CURSE 1 Name=Switcher_Snowball
     Ability:
       - Switcher
   Tank:
@@ -574,7 +574,7 @@ Kits:
     Price: 0
     Icon: STRING 0 1
     Items:
-      - 'STRING 0 10 Name=Trapper''s_String Unlootable 1'
+      - 'STRING 0 10 Name=Trapper''s_String VANISHING_CURSE 1'
     Ability:
       - Trapper
   Turtle:
@@ -590,7 +590,7 @@ Kits:
     Price: 0
     Icon: POTION 8201 1
     Items:
-      - POTION 8201 1 Unlootable 1
+      - POTION 8201 1 VANISHING_CURSE 1
   Vampire:
     Description: 'The Dracula kit is a fantastic solo kit. You gain a large health boost when you kill players, a medium health boost when slaying monsters, or a small health boost when killing animals. If you already have full health when slaying another player, you gain a health pot!'
     Free: true
@@ -618,7 +618,7 @@ Kits:
     Price: 0
     Icon: BEEF 0 1
     Items:
-      - ENCHANTED_BOOK 0 1 Name=Death_Note Unlootable 1
+      - ENCHANTED_BOOK 0 1 Name=Death_Note VANISHING_CURSE 1
     Ability:
       - Vulture
   Warder:
@@ -627,7 +627,7 @@ Kits:
     Price: 0
     Icon: BOOK 0 1
     Items:
-      - BOOK 0 1 Unlootable 1 Name=Tome_of_Protection UniqueItem
+      - BOOK 0 1 VANISHING_CURSE 1 Name=Tome_of_Protection UniqueItem
     Ability:
       - Warder
   Werewolf:
@@ -636,7 +636,7 @@ Kits:
     Price: 0
     Icon: CLOCK 0 1
     Items:
-      - CLOCK 0 1 Unlootable 1
+      - CLOCK 0 1 VANISHING_CURSE 1
     Ability:
       - Werewolf
   Wisp:
@@ -645,7 +645,7 @@ Kits:
     Price: 0
     Icon: MAGMA_CREAM 0 1
     Items:
-      - MAGMA_CREAM 0 5 Name=Will_of_the_wisp Unlootable 1
+      - MAGMA_CREAM 0 5 Name=Will_of_the_wisp VANISHING_CURSE 1
     Ability:
       - Wisp
   Worm:
