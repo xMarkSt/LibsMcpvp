@@ -56,7 +56,7 @@
         <dependency>
             <groupId>com.github.xMarkSt</groupId>
             <artifactId>LibsHungergames</artifactId>
-            <version>ef41417</version>
+            <version>e0e063e</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
