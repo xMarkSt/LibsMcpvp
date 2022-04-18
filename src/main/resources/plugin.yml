@@ -4,5 +4,5 @@ author: libraryaddict
 version: ${project.version}
 depend: [LibsHungergames]
 softdepend: [LibsDisguises]
-load: startup
+load: STARTUP
 api-version: 1.18

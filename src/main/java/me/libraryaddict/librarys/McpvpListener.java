@@ -27,7 +27,7 @@ public class McpvpListener implements Listener {
     private String cactusJuiceName;
     private boolean chocolateMilk;
     private String chocolateMilkName;
-    private Hungergames hg = HungergamesApi.getHungergames();
+    private final Hungergames hg;
     // private int joinUtil;
     private ArrayList<String> joined = new ArrayList<String>();
     private boolean joinersItems;
@@ -38,6 +38,7 @@ public class McpvpListener implements Listener {
 
     public McpvpListener(McPvP mcpvp) {
         this.mcpvp = mcpvp;
+        this.hg = HungergamesApi.getHungergames();
         FileConfiguration config = mcpvp.getConfig();
         this.respawnUntil = config.getInt("RespawnDuration");
         this.respawnItems = config.getBoolean("RespawnItems");

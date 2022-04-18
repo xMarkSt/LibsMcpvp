@@ -2,6 +2,7 @@ package me.libraryaddict.librarys;
 
 import java.io.File;
 
+import me.libraryaddict.Hungergames.Hungergames;
 import me.libraryaddict.Hungergames.Listeners.LibsFeastManager;
 import me.libraryaddict.Hungergames.Types.HungergamesApi;
 import me.libraryaddict.Hungergames.Types.Kit;
@@ -14,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class McPvP extends JavaPlugin implements Listener {
@@ -22,6 +24,11 @@ public class McPvP extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        // Check if dependency loaded
+        Plugin hg = getServer().getPluginManager().getPlugin("LibsHungergames");
+        if (!(hg instanceof Hungergames)) {
+            System.out.print("[Libs MCPVP] Failed to find dependency LibsHungergames. This plugin will not work!");
+        }
         saveDefaultConfig();
         File file = new File(getDataFolder().toString() + "/kits.yml");
         ConfigurationSection config;
