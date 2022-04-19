@@ -36,7 +36,7 @@ public class McPvP extends JavaPlugin implements Listener {
             saveResource("kits.yml", false);
         }
         config = YamlConfiguration.loadConfiguration(file);
-        HungergamesApi.getAbilityManager().initializeAllAbilitiesInPackage(this, "me.libraryaddict.librarys.Abilities");
+        HungergamesApi.getAbilityManager().initializeAllAbilitiesInPackage(this, "me.libraryaddict.libraries.Abilities");
         if (config.contains("Kits")) {
             for (String string : config.getConfigurationSection("Kits").getKeys(false)) {
                 if (config.contains("BadKits") && config.getStringList("BadKits").contains(string))
