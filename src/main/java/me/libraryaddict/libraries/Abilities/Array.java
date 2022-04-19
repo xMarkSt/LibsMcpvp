@@ -16,6 +16,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -95,7 +96,7 @@ public class Array extends AbilityListener implements Disableable {
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName(arrayItemName);
                 item.setItemMeta(meta);
-                item.addEnchantment(EnchantmentManager.UNLOOTABLE, 1);
+                item.addEnchantment(Enchantment.VANISHING_CURSE, 1);
                 EnchantmentManager.updateEnchants(item);
                 HungergamesApi.getKitManager().addItem(player, item);
                 for (Block b : heal.blocks)

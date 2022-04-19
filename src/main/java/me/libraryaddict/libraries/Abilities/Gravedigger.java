@@ -8,6 +8,7 @@ import me.libraryaddict.Hungergames.Types.AbilityListener;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -34,7 +35,7 @@ public class Gravedigger extends AbilityListener implements Disableable {
             Iterator<ItemStack> itel = event.getDrops().iterator();
             while (itel.hasNext()) {
                 ItemStack item = itel.next();
-                if (item == null || item.getType() == Material.AIR || item.containsEnchantment(EnchantmentManager.UNLOOTABLE))
+                if (item == null || item.getType() == Material.AIR || item.containsEnchantment(Enchantment.VANISHING_CURSE))
                     continue;
                 if (HungergamesApi.getKitManager().canFit(inv, new ItemStack[] { item }))
                     inv.addItem(item);

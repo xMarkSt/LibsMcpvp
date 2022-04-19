@@ -56,7 +56,7 @@ public class Switcher extends AbilityListener implements Disableable {
                 if (cooldown.containsKey(p) && cooldown.get(p) > hg.currentTime) {
                     event.setCancelled(true);
                     ItemStack snowball = HungergamesApi.getKitManager().parseItem(
-                            "SNOW_BALL 0 1 Unlootable 1 Name=Switcher_Snowball")[0];
+                            "SNOW_BALL 0 1 VANISHING_CURSE 1 Name=Switcher_Snowball")[0];
                     HungergamesApi.getKitManager().addItem(p, snowball);
                     p.updateInventory();
                     p.sendMessage(String.format(cooldownMessage, cooldown.get(p) - hg.currentTime));

@@ -5,6 +5,7 @@ import me.libraryaddict.Hungergames.Managers.EnchantmentManager;
 import me.libraryaddict.Hungergames.Types.AbilityListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -24,7 +25,7 @@ public class Salvager extends AbilityListener implements Disableable {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType() == Material.ANVIL && hasAbility(p)) {
             ItemStack item = event.getItem();
             if (item != null && item.getType() != Material.AIR && item.getType() != Material.ANVIL
-                    && item.getType() != Material.COMPASS && !item.containsEnchantment(EnchantmentManager.UNLOOTABLE)) {
+                    && item.getType() != Material.COMPASS && !item.containsEnchantment(Enchantment.VANISHING_CURSE)) {
                 for (Recipe recipe : Bukkit.getRecipesFor(item)) {
                     if (recipe.getResult().getAmount() > item.getAmount())
                         continue;

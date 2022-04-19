@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,7 +44,7 @@ public class Launcher extends AbilityListener implements Disableable {
             ItemMeta meta = itemstack.getItemMeta();
             meta.setDisplayName(launcherBlockName);
             itemstack.setItemMeta(meta);
-            itemstack.addEnchantment(EnchantmentManager.UNLOOTABLE, 1);
+            itemstack.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             EnchantmentManager.updateEnchants(itemstack);
             item.setItemStack(itemstack);
         }

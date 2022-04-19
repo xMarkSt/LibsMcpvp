@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -132,7 +133,7 @@ public class Santa extends AbilityListener implements Disableable {
                     if (presentLore.length > 0 && (presentLore.length > 1 || presentLore[0].length() > 0))
                         meta.setLore(Arrays.asList(presentLore));
                     item.setItemMeta(meta);
-                    item.addEnchantment(EnchantmentManager.UNLOOTABLE, 1);
+                    item.addEnchantment(Enchantment.VANISHING_CURSE, 1);
                     kits.addItem(p, item);
                 }
             }

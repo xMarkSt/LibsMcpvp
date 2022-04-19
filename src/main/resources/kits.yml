@@ -32,7 +32,7 @@ Kits:
     Price: 0
     Icon: BEACON 0 1
     Items:
-      - BEACON 0 3 Name=Array Unlootable 1
+      - BEACON 0 3 Name=Array VANISHING_CURSE 1
     Ability:
       - Array
   Backpacker:
@@ -48,7 +48,7 @@ Kits:
     Price: 0
     Icon: WOODEN_SWORD 0 1
     Items:
-      - WOODEN_SWORD 0 1 Name=Legendary_Sword Unlootable 1 UniqueItem Unbreakable
+      - WOODEN_SWORD 0 1 Name=Legendary_Sword VANISHING_CURSE 1 UniqueItem Unbreakable
     Ability:
       - Barbarian
   Beastmaster:
@@ -107,9 +107,9 @@ Kits:
     Price: 0
     Icon: POTION 16428 1
     Items:
-      - POTION 16428 1 Unlootable 1
-      - POTION 16420 1 Unlootable 1
-      - POTION 16424 1 Unlootable 1
+      - POTION 16428 1 VANISHING_CURSE 1
+      - POTION 16420 1 VANISHING_CURSE 1
+      - POTION 16424 1 VANISHING_CURSE 1
   CookieMonster:
     Description: 'The cookie monster kit allows you to drop cookies from tall grass and shrubs, there is a 25% chance of a cookie dropping. Gain a tiny health boost from eating it. If health is full, a tiny hunger boost. Else if hunger is full, a speed boost!'
     Free: true
@@ -123,8 +123,8 @@ Kits:
     Price: 0
     Icon: BLAZE_POWDER 0 1
     Items:
-      - NETHER_STAR 0 1 Name=Crafting_Star Unlootable 1 Lore=Right_click_with_this\nto_open_a_crafting_table
-      - BLAZE_POWDER 0 1 Name=Furnace_Powder Unlootable 1 UniqueItem Lore=Right_click_with_this\nto_open_a_furnace
+      - NETHER_STAR 0 1 Name=Crafting_Star VANISHING_CURSE 1 Lore=Right_click_with_this\nto_open_a_crafting_table
+      - BLAZE_POWDER 0 1 Name=Furnace_Powder VANISHING_CURSE 1 UniqueItem Lore=Right_click_with_this\nto_open_a_furnace
     Ability:
       - Crafter
   Cultivator:
@@ -164,7 +164,7 @@ Kits:
     Price: 0
     Icon: DRAGON_EGG 0 1
     Items:
-      - DRAGON_EGG 0 6 Unlootable 1 Name=Mining_Mole Lore=Place_this_and_run
+      - DRAGON_EGG 0 6 VANISHING_CURSE 1 Name=Mining_Mole Lore=Place_this_and_run
     Ability:
       - Digger
   Doctor:
@@ -173,7 +173,7 @@ Kits:
     Price: 0
     Icon: SHEARS 0 1
     Items:
-      - SHEARS 0 1 Name=Pair_Of_Forceps Unlootable 1
+      - SHEARS 0 1 Name=Pair_Of_Forceps VANISHING_CURSE 1
     Ability:
       - Doctor
   Dwarf:
@@ -189,7 +189,7 @@ Kits:
     Price: 0
     Icon: ENDER_PORTAL_FRAME 0 1
     Items:
-      - ENDER_PORTAL_FRAME 0 1 Name=Endermage_Portal Unlootable 1
+      - ENDER_PORTAL_FRAME 0 1 Name=Endermage_Portal VANISHING_CURSE 1
     Ability:
       - Endermage
   Explorer:
@@ -225,7 +225,7 @@ Kits:
     Price: 0
     Icon: REDSTONE_TORCH 0 1
     Items:
-      - REDSTONE_TORCH 0 1 Name=Flash UniqueItem Unlootable 1
+      - REDSTONE_TORCH 0 1 Name=Flash UniqueItem VANISHING_CURSE 1
     Ability:
       - Flash
   Forger:
@@ -261,7 +261,7 @@ Kits:
     Price: 0
     Icon: STICK 0 1 KNOCKBACK 2
     Items:
-      - Stick 0 1 Name=Grandpa's_Cane KNOCKBACK 2 Unlootable 1
+      - Stick 0 1 Name=Grandpa's_Cane KNOCKBACK 2 VANISHING_CURSE 1
   Gravedigger:
     Description: 'You got sick of picking up all their loot, so just before you kill them off you say ''Hey. Take off dat armor for me and items and stick it into a chest''. Perfect for those who hate to pick their food up from the ground!'
     Free: true
@@ -289,7 +289,7 @@ Kits:
     Price: 0
     Icon: STONE_AXE 0 1
     Items:
-      - STONE_AXE 0 1 Name=Jack_Hammer Unlootable 1
+      - STONE_AXE 0 1 Name=Jack_Hammer VANISHING_CURSE 1
     Ability:
       - JackHammer
   Jumper:
@@ -307,7 +307,7 @@ Kits:
     Price: 0
     Icon: FIREWORK_ROCKET 0 1
     Items:
-      - FIREWORK_ROCKET 0 1 Unlootable 1 Name=Kangaroo_Fireworks
+      - FIREWORK_ROCKET 0 1 VANISHING_CURSE 1 Name=Kangaroo_Fireworks
     Ability:
       - Kangaroo
   Kaya:
@@ -325,7 +325,7 @@ Kits:
     Price: 0
     Icon: SPONGE 0 1
     Items:
-      - SPONGE 0 10 Name=Launcher_Block Unlootable 1
+      - SPONGE 0 10 Name=Launcher_Block VANISHING_CURSE 1
     Ability:
       - Launcher
   Lumberjack:
